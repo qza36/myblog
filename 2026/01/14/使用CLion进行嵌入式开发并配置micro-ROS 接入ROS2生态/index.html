@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="使用CLion进行嵌入式开发并配置micro-ROS 接入ROS2生态环境 Ubuntu 22.04 ROS2-Humble MPU：STM32F407VET6 树莓派4b（已安装好ROS2-Humble） 可访问国际互联网的代理  性能较弱的芯片可能无法运行microros  配置开发环境配置CLlion开发嵌入式参考稚晖君的博客https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;1458">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zion&#39;s Blog">
+<meta property="og:title" content="使用CLion进行嵌入式开发并配置micro-ROS">
 <meta property="og:url" content="https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/index.html">
 <meta property="og:site_name" content="Zion&#39;s Blog">
 <meta property="og:description" content="使用CLion进行嵌入式开发并配置micro-ROS 接入ROS2生态环境 Ubuntu 22.04 ROS2-Humble MPU：STM32F407VET6 树莓派4b（已安装好ROS2-Humble） 可访问国际互联网的代理  性能较弱的芯片可能无法运行microros  配置开发环境配置CLlion开发嵌入式参考稚晖君的博客https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;1458">
@@ -38,8 +38,8 @@
 <meta property="og:image" content="https://zions.dev/img/Clion_micros/image%2021.png">
 <meta property="og:image" content="https://zions.dev/img/Clion_micros/image%2022.png">
 <meta property="article:published_time" content="2026-01-13T18:50:48.000Z">
-<meta property="article:modified_time" content="2026-01-14T02:53:44.053Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2026-01-14T04:12:19.897Z">
+<meta property="article:author" content="Zion Zhiang Qi">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zions.dev/img/Clion_micros/image.png">
     
@@ -61,7 +61,7 @@
       
     
     <!-- title -->
-    <title>Zion&#39;s Blog</title>
+    <title>使用CLion进行嵌入式开发并配置micro-ROS</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -106,8 +106,6 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/01/14/hello-world/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -121,16 +119,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&text=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&is_video=false&description=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用CLion进行嵌入式开发并配置micro-ROS&body=Check out this article: https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&name=使用CLion进行嵌入式开发并配置micro-ROS&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&t=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -150,14 +148,14 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        
+        使用CLion进行嵌入式开发并配置micro-ROS
     </h1>
 
 
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">John Doe</span>
+        <span class="p-name" itemprop="name">Zion Zhiang Qi</span>
       </span>
       
     <div class="postdate">
@@ -360,16 +358,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&text=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&is_video=false&description=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用CLion进行嵌入式开发并配置micro-ROS&body=Check out this article: https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&title=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&name=使用CLion进行嵌入式开发并配置micro-ROS&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zions.dev/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/&t=使用CLion进行嵌入式开发并配置micro-ROS"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -393,7 +391,7 @@
     
     
     2016-2026
-    John Doe
+    Zion Zhiang Qi
   </div>
   <div class="footer-right">
     <nav>
@@ -410,6 +408,14 @@
       </ul>
     </nav>
   </div>
+  <div style="width: 100%; clear: both; margin-top: 20px; padding-top: 10px; border-top: 1px dashed #666; font-size: 0.8em; color: #999; line-height: 1.5;">
+    <p style="margin: 0;">
+        <strong>Disclaimer:</strong> This is a personal technical blog for coding notes. It is <strong>NOT</strong> affiliated with, endorsed by, or connected to Zions Bancorporation or Zions Bank.
+    </p>
+    <p style="margin: 5px 0 0 0;">
+        <strong>声明：</strong> 本站为个人非营利技术博客，专注于技术分享，与 Zions 银行或任何金融机构无任何关联。
+    </p>
+</div>
 </footer>
 
     </div>

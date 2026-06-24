@@ -1,220 +1,244 @@
 <!DOCTYPE html>
-<html lang=en>
+<!--
+  Personal homepage for Zhiang Qi (Zion) — hand-built, self-contained, theme-independent.
+  Hexo copies this file verbatim to public/index.html (see `skip_render: index.html` in _config.yml).
+  Edit content directly below. Search for "TODO" to find the placeholders you still need to fill in.
+-->
+<html lang="en">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Zion&#39;s Blog">
-<meta property="og:url" content="https://zions.dev/index.html">
-<meta property="og:site_name" content="Zion&#39;s Blog">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Zion Zhiang Qi">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Zion&#39;s Blog</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zhiang Qi — Robotics · SLAM &amp; Autonomous Navigation</title>
+  <meta name="description" content="Zhiang Qi (Zion) — robotics, LiDAR odometry / SLAM, and autonomous navigation. Projects, research interests, and contact." />
+  <meta name="author" content="Zhiang Qi" />
+  <link rel="canonical" href="https://zions.dev/" />
 
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Zhiang Qi — Robotics · SLAM & Autonomous Navigation" />
+  <meta property="og:description" content="Robotics, LiDAR odometry / SLAM, and autonomous navigation. Projects, research interests, and contact." />
+  <meta property="og:url" content="https://zions.dev/" />
 
-    <!-- Umami Analytics -->
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f8fa;
+      --text: #16181d;
+      --muted: #5b6168;
+      --faint: #888d94;
+      --border: rgba(0, 0, 0, 0.10);
+      --accent: #2257d6;
+      --accent-soft: #eaf0fd;
+      --maxw: 720px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1014;
+        --surface: #171a20;
+        --text: #e7e9ec;
+        --muted: #a3a9b2;
+        --faint: #777d86;
+        --border: rgba(255, 255, 255, 0.10);
+        --accent: #6f9bff;
+        --accent-soft: #19233c;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
+    nav.top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; font-size: 14px; }
+    nav.top .brand { font-weight: 600; color: var(--text); }
+    nav.top .links a { color: var(--muted); margin-left: 20px; }
+    nav.top .links a:hover { color: var(--accent); text-decoration: none; }
 
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
+    header.hero { display: flex; gap: 28px; align-items: center; padding: 18px 0 8px; }
+    .avatar {
+      width: 116px; height: 116px; min-width: 116px; border-radius: 50%;
+      object-fit: cover; background: var(--accent-soft); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 30px; font-weight: 600;
+    }
+    .hero h1 { margin: 0; font-size: 28px; font-weight: 650; letter-spacing: -0.01em; }
+    .hero .role { margin: 4px 0 0; font-size: 16px; color: var(--muted); }
+    .hero .affil { margin: 3px 0 0; font-size: 14px; color: var(--faint); }
+    .iconrow { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 14px; }
+    .iconrow a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+    .iconrow a:hover { color: var(--accent); text-decoration: none; }
+    .iconrow svg { width: 17px; height: 17px; fill: currentColor; }
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 8.1.1"></head>
+    main { padding: 8px 0 56px; }
+    section { margin-top: 38px; }
+    h2.kicker {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--faint); margin: 0 0 14px;
+    }
+    p.lead { margin: 0; font-size: 16px; line-height: 1.75; }
 
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4 h-card">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
-    
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">Zion&#39;s Blog</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">Home</a></li><!--
-   --><!--
-     --><li><a href="/about/">About</a></li><!--
-   --><!--
-     --><li><a href="/archives/">Writing</a></li><!--
-   --><!--
-     --><li><a target="_blank" rel="noopener" href="http://github.com/qza36">Projects</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 14px; padding: 5px 13px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
 
-        
-        <section id="about" class="p-note">
-  
-  
-    <p>
-      Find me on
-      
-      
-      
-        
-        
-          <a class="icon u-url" target="_blank" rel="noopener me" href="http://github.com/qza36" aria-label="github" title="github">
-            <i class="fa-brands fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> and 
-        
-      
-        
-        
-          <a class="icon u-email" target="_blank" rel="noopener" href="mailto:qza36@outlook.com" aria-label="mail" title="mail">
-            <i class="fa-solid fa-envelope"></i><!--
-      ---></a>
-        <!--
-    --->.
-        
-      
-    </p>
-  
-</section>
+    .card {
+      display: flex; gap: 16px; padding: 16px 18px; border: 1px solid var(--border);
+      border-radius: 12px; background: var(--surface); margin-bottom: 12px;
+    }
+    .card .thumb {
+      width: 64px; height: 64px; min-width: 64px; border-radius: 8px; object-fit: cover;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 11px;
+    }
+    .card h3 { margin: 0; font-size: 16px; font-weight: 600; }
+    .card h3 .meta { font-weight: 400; color: var(--faint); }
+    .card p { margin: 5px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+    .card .clinks { margin-top: 7px; font-size: 13.5px; display: flex; gap: 14px; flex-wrap: wrap; }
 
-<section id="writing">
-  <span class="h1"><a href="/archives/">Writing</a></span>
-  
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2026-01-13T18:50:48.000Z" class="dt-published" itemprop="datePublished">2026-01-14</time>
-        
-      
-    </div>
+    .news { list-style: none; margin: 0; padding: 0; }
+    .news li { display: flex; gap: 16px; padding: 7px 0; font-size: 15px; border-bottom: 1px solid var(--border); }
+    .news li:last-child { border-bottom: 0; }
+    .news .date { color: var(--faint); min-width: 52px; font-variant-numeric: tabular-nums; }
 
+    footer { padding: 28px 0 48px; font-size: 13.5px; color: var(--faint); border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
 
-        <span>
-    
-        <a class="" href="/2026/01/14/%E4%BD%BF%E7%94%A8CLion%E8%BF%9B%E8%A1%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E5%B9%B6%E9%85%8D%E7%BD%AEmicro-ROS%20%E6%8E%A5%E5%85%A5ROS2%E7%94%9F%E6%80%81/">使用CLion进行嵌入式开发并配置micro-ROS</a>
-    
+    @media (max-width: 600px) {
+      header.hero { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .avatar { width: 92px; height: 92px; min-width: 92px; font-size: 24px; }
+      .hero h1 { font-size: 24px; }
+      nav.top .links a { margin-left: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
 
-
-</span>
-      </li>
-    
-  </ul>
-  
-</section>
-
-
-
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2016-2026
-    Zion Zhiang Qi
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/qza36">Projects</a></li><!--
-     -->
-      </ul>
+    <nav class="top">
+      <span class="brand">Zhiang Qi</span>
+      <span class="links">
+        <a href="/blog/">Blog</a>
+        <a href="/archives/">Archives</a>
+        <a href="https://github.com/qza36">GitHub</a>
+      </span>
     </nav>
+
+    <header class="hero">
+      <!-- TODO: drop a square photo at source/img/avatar.jpg (≈400×400). Until then, initials show as a fallback. -->
+      <img class="avatar" src="/img/avatar.jpg" alt="Zhiang Qi"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'ZQ'}))" />
+      <div>
+        <h1>Zhiang Qi</h1>
+        <p class="role">Robotics · SLAM &amp; autonomous navigation</p>
+        <!-- TODO: fill in your university, program, and year. -->
+        <p class="affil">Undergraduate, [Your University] &nbsp;·&nbsp; Team Captain, COD · RoboMaster</p>
+        <div class="iconrow">
+          <a href="https://github.com/qza36">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            qza36
+          </a>
+          <!-- TODO: confirm which email you want public (qza36@outlook.com or ang766378@gmail.com). -->
+          <a href="mailto:qza36@outlook.com">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3h13A1.5 1.5 0 0 1 16 4.5v7A1.5 1.5 0 0 1 14.5 13h-13A1.5 1.5 0 0 1 0 11.5v-7A1.5 1.5 0 0 1 1.5 3Zm.2 1.2 6.3 4 6.3-4H1.7Zm12.6 1.1-6 3.8a.5.5 0 0 1-.6 0L1.2 5.3v6.2c0 .17.13.3.3.3h13a.3.3 0 0 0 .3-.3V5.3Z"/></svg>
+            Email
+          </a>
+          <!-- TODO: add your Google Scholar URL, or delete this line if you don't have one yet. -->
+          <a href="#scholar">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0 0 4.5 8 9l6.5-3.66V11H16V4.5L8 0ZM3 8.06v2.69C3 12.55 5.24 14 8 14s5-1.45 5-3.25V8.06L8 11 3 8.06Z"/></svg>
+            Scholar
+          </a>
+          <!-- TODO: add a link to your CV PDF (e.g. /cv.pdf placed in source/), or delete this line. -->
+          <a href="#cv">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 0h5l3 3v11.5A1.5 1.5 0 0 1 10.5 16h-7A1.5 1.5 0 0 1 2 14.5v-13A1.5 1.5 0 0 1 3.5 0H4Zm5 1.5V4h2.5L9 1.5ZM5 7h6v1H5V7Zm0 3h6v1H5v-1Z"/></svg>
+            CV
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2 class="kicker">About</h2>
+        <!-- TODO: make this your own. Keep it short — 2–3 sentences. -->
+        <p class="lead">
+          I build perception and navigation systems for autonomous robots — from low-level embedded
+          firmware up to full ROS&nbsp;2 autonomy stacks. I'm currently focused on LiDAR odometry and
+          motion planning for competition robotics, and I lead the COD team into the RoboMaster 2026 season.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="kicker">Research interests</h2>
+        <div class="tags">
+          <span class="tag">LiDAR odometry / SLAM</span>
+          <span class="tag">Autonomous navigation</span>
+          <span class="tag">Motion planning</span>
+          <span class="tag">Embedded systems / micro-ROS</span>
+          <span class="tag">ROS&nbsp;2</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="kicker">Projects</h2>
+
+        <article class="card">
+          <span class="thumb">img</span>
+          <div>
+            <h3>COD_NAV <span class="meta">· Nav2 autonomy stack</span></h3>
+            <p>Open-source navigation system for an autonomous RoboMaster robot, built on the Nav2 framework — perception, localization, and planning integrated end to end.</p>
+            <div class="clinks">
+              <!-- TODO: confirm the real repo URL (GitHub usernames can't contain "_", so this is likely github.com/qza36/COD_NAV or an org). -->
+              <a href="https://github.com/qza36/COD_NAV">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="thumb">img</span>
+          <div>
+            <h3>kiss-icp <span class="meta">· open-source contributor</span></h3>
+            <p>Contributions to a widely-used, robust point-to-point LiDAR odometry pipeline that works across sensors and platforms with no parameter tuning.</p>
+            <div class="clinks">
+              <!-- TODO: link to your specific contributions (PRs) if you want; main repo below. -->
+              <a href="https://github.com/PRBonn/kiss-icp">Repository</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="thumb">img</span>
+          <div>
+            <h3>micro-ROS on STM32 <span class="meta">· embedded + ROS 2 guide</span></h3>
+            <p>A practical guide to embedded development in CLion with STM32F407 + Raspberry Pi, bridging bare-metal firmware into the ROS&nbsp;2 (Humble) ecosystem via micro-ROS.</p>
+            <div class="clinks">
+              <a href="/blog/">Read the post</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2 class="kicker">News</h2>
+        <ul class="news">
+          <li><span class="date">2026</span><span>Appointed Team Captain of COD for the RoboMaster 2026 season.</span></li>
+          <li><span class="date">2026</span><span>Published a guide on micro-ROS embedded development with CLion + STM32.</span></li>
+          <!-- TODO: add more milestones as they happen (awards, papers, talks, releases). -->
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="yr"></span> Zhiang Qi · Built with <a href="https://hexo.io">Hexo</a> · <a href="/blog/">Blog</a></span>
+    </footer>
+
   </div>
-  <div style="width: 100%; clear: both; margin-top: 20px; padding-top: 10px; border-top: 1px dashed #666; font-size: 0.8em; color: #999; line-height: 1.5;">
-    <p style="margin: 0;">
-        <strong>Disclaimer:</strong> This is a personal technical blog for coding notes. It is <strong>NOT</strong> affiliated with, endorsed by, or connected to Zions Bancorporation or Zions Bank.
-    </p>
-    <p style="margin: 5px 0 0 0;">
-        <strong>声明：</strong> 本站为个人非营利技术博客，专注于技术分享，与 Zions 银行或任何金融机构无任何关联。
-    </p>
-</div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>

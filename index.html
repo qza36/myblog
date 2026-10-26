@@ -1,286 +1,2311 @@
 <!DOCTYPE html>
-<!--
-  Personal homepage for Zhiang Qi (齐志昂) — hand-built, self-contained, theme-independent.
-  Hexo copies this file verbatim to public/index.html (see `skip_render: index.html` in _config.yml).
-
-  BILINGUAL (EN / 中文):
-    Every translatable bit of text appears twice, side by side:
-      <span data-l="en">English</span><span data-l="zh">中文</span>
-    CSS shows one and hides the other based on <html data-lang="en|zh">; a button toggles it
-    (choice is remembered in localStorage, and first-visit defaults to the browser language).
-    To EDIT content: change BOTH the data-l="en" and the data-l="zh" version of that line.
-
-  Assets: photo -> source/img/avatar.jpg   |   CV -> source/cv.pdf  (link is /cv.pdf)
-  Search "TODO" for the few things still worth double-checking.
--->
-<html lang="en" data-lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>齐志昂 · Zhiang Qi — Robotics &amp; Autonomous Navigation</title>
-  <meta name="description" content="Zhiang Qi (齐志昂) — robotics, autonomous navigation, LiDAR-inertial SLAM, and motion planning. Projects, experience, and contact." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Zhiang Qi</title>
+  <meta name="description" content="Zhiang Qi — network engineering undergrad working on autonomous navigation, SLAM, and robot systems." />
   <meta name="author" content="Zhiang Qi" />
+  <meta name="theme-color" content="#1a1917" id="themeColor" />
   <link rel="canonical" href="https://zions.dev/" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Zhiang Qi (齐志昂) — Robotics & Autonomous Navigation" />
-  <meta property="og:description" content="Robotics, autonomous navigation, LiDAR-inertial SLAM, and motion planning." />
+  <meta property="og:title" content="Zhiang Qi" />
+  <meta property="og:description" content="Network engineering undergrad working on autonomous navigation, SLAM, and robot systems." />
   <meta property="og:url" content="https://zions.dev/" />
-
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #ffffff; --surface: #f7f8fa; --text: #16181d; --muted: #5b6168;
-      --faint: #888d94; --border: rgba(0,0,0,0.10); --accent: #2257d6; --accent-soft: #eaf0fd;
-      --maxw: 740px;
+    :root,
+    [data-theme="dark"] {
+      --bg: #1a1917;
+      --fg: #fff7f0;
+      --muted: color-mix(in srgb, var(--fg) 56%, transparent);
+      --faint: color-mix(in srgb, var(--fg) 34%, transparent);
+      --line: color-mix(in srgb, var(--fg) 11%, transparent);
+      --underline: color-mix(in srgb, var(--fg) 34%, transparent);
+      --card-bg: color-mix(in srgb, #23221e 84%, transparent);
+      --card-border: color-mix(in srgb, var(--fg) 13%, transparent);
+      --card-shadow:
+        0 24px 64px -24px rgba(0, 0, 0, 0.9),
+        0 2px 10px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 247, 240, 0.055);
+      --shade: rgba(0, 0, 0, 0.3);
+      --grain-opacity: 0.032;
+      --transition:
+        background-color 360ms cubic-bezier(0.2, 0.7, 0.2, 1),
+        color 360ms cubic-bezier(0.2, 0.7, 0.2, 1),
+        border-color 360ms cubic-bezier(0.2, 0.7, 0.2, 1),
+        box-shadow 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      --pad-x: clamp(1.35rem, 5.5vw, 5.5rem);
+      --pad-b: clamp(2rem, 6.5vh, 4.25rem);
+      color-scheme: dark;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0e1014; --surface: #171a20; --text: #e7e9ec; --muted: #a3a9b2;
-        --faint: #777d86; --border: rgba(255,255,255,0.10); --accent: #6f9bff; --accent-soft: #19233c;
-      }
+
+    [data-theme="light"] {
+      --bg: #f5f4f1;
+      --fg: #262523;
+      --muted: color-mix(in srgb, var(--fg) 58%, transparent);
+      --faint: color-mix(in srgb, var(--fg) 36%, transparent);
+      --line: color-mix(in srgb, var(--fg) 10%, transparent);
+      --underline: color-mix(in srgb, var(--fg) 32%, transparent);
+      --card-bg: color-mix(in srgb, #fffdf9 82%, transparent);
+      --card-border: color-mix(in srgb, var(--fg) 12%, transparent);
+      --card-shadow:
+        0 24px 64px -26px rgba(38, 37, 35, 0.32),
+        0 2px 8px rgba(38, 37, 35, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      --shade: rgba(38, 37, 35, 0.055);
+      --grain-opacity: 0.018;
+      color-scheme: light;
     }
-    * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+      overscroll-behavior: none;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.005em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-variant-ligatures: none;
+      transition: var(--transition);
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
-    /* --- language toggle --- */
-    [data-l="zh"] { display: none; }
-    html[data-lang="zh"] [data-l="en"] { display: none; }
-    html[data-lang="zh"] [data-l="zh"] { display: revert; }
-    .langbtn {
-      background: transparent; border: 1px solid var(--border); color: var(--muted);
-      font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 999px; cursor: pointer; line-height: 1.4;
+    ::selection {
+      background: color-mix(in srgb, #e86038 55%, transparent);
+      color: var(--fg);
     }
-    .langbtn:hover { color: var(--accent); border-color: var(--accent); }
 
-    nav.top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; font-size: 14px; gap: 12px; }
-    nav.top .brand { font-weight: 600; color: var(--text); }
-    nav.top .links { display: flex; align-items: center; gap: 18px; }
-    nav.top .links a { color: var(--muted); }
-    nav.top .links a:hover { color: var(--accent); text-decoration: none; }
-
-    header.hero { display: flex; gap: 28px; align-items: center; padding: 18px 0 8px; }
-    .avatar {
-      width: 116px; height: 116px; min-width: 116px; border-radius: 50%; object-fit: cover;
-      background: var(--accent-soft); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 30px; font-weight: 600;
+    /* ——— pond layers ——— */
+    #pond {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: manipulation;
     }
-    .hero h1 { margin: 0; font-size: 28px; font-weight: 650; letter-spacing: -0.01em; }
-    .hero .role { margin: 4px 0 0; font-size: 16px; color: var(--muted); }
-    .hero .affil { margin: 3px 0 0; font-size: 14px; color: var(--faint); }
-    .iconrow { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 14px; }
-    .iconrow a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
-    .iconrow a:hover { color: var(--accent); text-decoration: none; }
-    .iconrow svg { width: 17px; height: 17px; fill: currentColor; }
 
-    main { padding: 8px 0 56px; }
-    section { margin-top: 36px; }
-    h2.kicker {
-      font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--faint); margin: 0 0 14px;
+    .pond-shade {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 120% 92% at 50% 34%, transparent 40%, var(--shade) 100%),
+        radial-gradient(ellipse 58% 48% at 13% 88%, color-mix(in srgb, var(--bg) 52%, transparent), transparent 74%),
+        linear-gradient(to top, color-mix(in srgb, var(--bg) 34%, transparent), transparent 26%);
+      transition: background 360ms ease;
     }
-    p.lead { margin: 0; font-size: 16px; line-height: 1.75; }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { font-size: 14px; padding: 5px 13px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
-
-    .entry { padding: 11px 0; border-bottom: 1px solid var(--border); }
-    .entry:last-child { border-bottom: 0; }
-    .entry .h { font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-    .entry .when { font-weight: 400; color: var(--faint); font-size: 13px; white-space: nowrap; }
-    .entry p { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
-
-    .card {
-      display: flex; gap: 16px; padding: 16px 18px; border: 1px solid var(--border);
-      border-radius: 12px; background: var(--surface); margin-bottom: 12px;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      z-index: 3;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.62'/%3E%3C/svg%3E");
+      background-size: 140px 140px;
+      transition: opacity 360ms ease;
     }
-    .card .thumb {
-      width: 56px; height: 56px; min-width: 56px; border-radius: 8px; background: var(--bg);
-      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent);
+
+    /* ——— navigation ——— */
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      padding: clamp(1.15rem, 2.8vh, 2rem) 1rem 0;
+      pointer-events: none;
     }
-    .card .thumb svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; }
-    .card h3 { margin: 0; font-size: 16px; font-weight: 600; }
-    .card h3 .meta { font-weight: 400; color: var(--faint); font-size: 13px; }
-    .card p { margin: 5px 0 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
-    .card .clinks { margin-top: 8px; font-size: 13.5px; display: flex; gap: 14px; flex-wrap: wrap; }
 
-    .awards { list-style: none; margin: 0; padding: 0; }
-    .awards li { display: flex; gap: 16px; padding: 8px 0; font-size: 15px; border-bottom: 1px solid var(--border); }
-    .awards li:last-child { border-bottom: 0; }
-    .awards .date { color: var(--faint); min-width: 46px; font-variant-numeric: tabular-nums; }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+      pointer-events: auto;
+    }
 
-    footer { padding: 26px 0 48px; font-size: 13.5px; color: var(--faint); border-top: 1px solid var(--border); }
-    footer a { color: var(--muted); }
+    .nav a,
+    .nav button {
+      appearance: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--fg);
+      font: inherit;
+      font-size: 12.5px;
+      line-height: 1;
+      letter-spacing: 0.015em;
+      text-decoration: none;
+      text-transform: lowercase;
+      opacity: 0.48;
+      cursor: pointer;
+      transition: opacity 180ms ease;
+    }
 
-    @media (max-width: 600px) {
-      header.hero { flex-direction: column; align-items: flex-start; gap: 18px; }
-      .avatar { width: 92px; height: 92px; min-width: 92px; font-size: 24px; }
-      .hero h1 { font-size: 24px; }
-      nav.top .links { gap: 12px; }
+    .nav a:hover,
+    .nav a:focus-visible,
+    .nav button:hover,
+    .nav button:focus-visible { opacity: 1; }
+
+    .nav a[aria-current="page"] { opacity: 0.92; }
+
+    .nav .sep {
+      font-size: 12.5px;
+      line-height: 1;
+      opacity: 0.2;
+      user-select: none;
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      opacity: 0.5;
+      transition: opacity 180ms ease, transform 300ms ease;
+    }
+    .theme-btn:hover { opacity: 1; transform: rotate(18deg); }
+    .theme-btn svg { width: 14px; height: 14px; display: block; }
+    .icon-sun { fill: currentColor; }
+    .icon-moon { fill: currentColor; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+
+    /* ——— pond stats ——— */
+    .stats {
+      position: fixed;
+      top: clamp(1.15rem, 2.8vh, 2rem);
+      right: clamp(1.1rem, 4vw, 4rem);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      color: var(--fg);
+      font-size: 10.5px;
+      line-height: 1.3;
+      letter-spacing: 0.035em;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.34;
+      text-align: right;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 360ms ease;
+    }
+
+    .stats .stat {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 0.45em;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .stats .num { min-width: 2ch; text-align: right; }
+    .stats .label {
+      color: var(--muted);
+      text-transform: lowercase;
+      font-size: 9.5px;
+      letter-spacing: 0.05em;
+    }
+    .stats .num.is-bumped { animation: stat-bump 360ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+    @keyframes stat-bump {
+      0% { opacity: 0.35; transform: translateY(1px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .feed-hint {
+      position: fixed;
+      right: clamp(1.1rem, 4vw, 4rem);
+      bottom: clamp(1rem, 2.6vh, 1.8rem);
+      z-index: 25;
+      margin: 0;
+      color: var(--fg);
+      font-size: 10px;
+      line-height: 1.4;
+      letter-spacing: 0.045em;
+      opacity: 0.26;
+      text-transform: lowercase;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 900ms ease;
+    }
+    .feed-hint.is-gone { opacity: 0; }
+    .feed-hint .hint-mark {
+      display: inline-block;
+      margin-right: 0.45em;
+      opacity: 0.6;
+    }
+
+    /* ——— prose ——— */
+    main {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 7rem clamp(1.5rem, 28vw, 22rem) var(--pad-b) var(--pad-x);
+      pointer-events: none;
+    }
+
+    .prose {
+      width: 100%;
+      max-width: 46rem;
+      pointer-events: auto;
+      animation: prose-in 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    @keyframes prose-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .quote {
+      margin: 0 0 clamp(1.45rem, 3.7vh, 2.3rem);
+      color: var(--fg);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+      opacity: 0.6;
+    }
+    .quote span { display: block; }
+
+    .caret {
+      display: inline-block;
+      width: 0.55em;
+      height: 1.02em;
+      margin-left: 1px;
+      background: var(--fg);
+      vertical-align: -0.14em;
+      animation: blink 1.1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    h1 {
+      margin: 0 0 0.72rem;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+    }
+
+    .bio {
+      margin: 0;
+      max-width: 44rem;
+      font-size: 14px;
+      line-height: 1.58;
+      color: color-mix(in srgb, var(--fg) 92%, transparent);
+    }
+
+    .bio p {
+      margin: 0 0 0.42rem;
+      text-wrap: pretty;
+      transition: opacity 210ms ease;
+    }
+    .bio p:last-child { margin-bottom: 0; }
+
+    .bio.is-dimmed p { opacity: 0.24; }
+    .bio.is-dimmed p.is-hot { opacity: 1; }
+
+    .cite {
+      position: relative;
+      display: inline;
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--underline);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4.5px;
+      cursor: pointer;
+      outline: none;
+      transition: color 160ms ease, text-decoration-color 160ms ease;
+    }
+    .cite:hover,
+    .cite:focus-visible,
+    .cite.is-open {
+      text-decoration-color: color-mix(in srgb, var(--fg) 82%, transparent);
+    }
+    .cite:focus-visible {
+      border-radius: 2px;
+      box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--fg) 45%, transparent);
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.36rem 0.55rem;
+      margin-top: clamp(1.15rem, 2.8vh, 1.8rem);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .social a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 4px;
+      opacity: 0.46;
+      text-transform: lowercase;
+      transition: opacity 160ms ease, text-decoration-color 160ms ease;
+    }
+    .social a:hover,
+    .social a:focus-visible {
+      opacity: 1;
+      text-decoration-color: var(--underline);
+    }
+    .social .sep {
+      opacity: 0.2;
+      user-select: none;
+    }
+
+    /* ——— citation cards ——— */
+    .cite-card {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      width: min(336px, calc(100vw - 1.5rem));
+      padding: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--fg) 3.5%, transparent), transparent 48%),
+        var(--card-bg);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      color: var(--fg);
+      font-size: 12px;
+      line-height: 1.45;
+      letter-spacing: 0.005em;
+      text-align: left;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(5px) scale(0.992);
+      transform-origin: 22% 100%;
+      transition:
+        opacity 160ms ease,
+        transform 190ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        visibility 160ms;
+    }
+
+    .cite.is-open .cite-card {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 10px 12px 9px;
+      border-bottom: 1px solid color-mix(in srgb, var(--fg) 7%, transparent);
+    }
+
+    .card-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      border: 1px solid color-mix(in srgb, var(--fg) 13%, transparent);
+      border-radius: 5px;
+      background: color-mix(in srgb, var(--fg) 4%, transparent);
+      color: color-mix(in srgb, var(--fg) 72%, transparent);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .card-co {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .card-when {
+      margin-left: auto;
+      flex: 0 0 auto;
+      padding-left: 0.6rem;
+      color: var(--faint);
+      font-size: 9.5px;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 10px 12px 11px;
+    }
+
+    .card-role {
+      color: var(--fg);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .card-detail {
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 7px 12px 8px;
+      border-top: 1px solid color-mix(in srgb, var(--fg) 7%, transparent);
+      color: var(--faint);
+      font-size: 9.5px;
+      line-height: 1.2;
+      letter-spacing: 0.045em;
+      text-transform: lowercase;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --pad-x: 1.35rem;
+        --pad-b: 1.9rem;
+      }
+      main {
+        padding-top: 5rem;
+        padding-right: 1.35rem;
+      }
+      .prose { max-width: 34rem; }
+      .quote { font-size: 12.5px; }
+      h1 { font-size: 14.5px; }
+      .bio { font-size: 13px; line-height: 1.56; }
+      .social { font-size: 11.5px; margin-top: 1.1rem; }
+      .nav { gap: 1.05rem; }
+      .nav a, .nav button, .nav .sep { font-size: 12px; }
+      .stats { right: 1.1rem; font-size: 10px; }
+      .stats .label { font-size: 9px; }
+      .feed-hint { right: 1.1rem; bottom: 1.05rem; font-size: 9.5px; }
+      .cite-card { width: min(322px, calc(100vw - 1.6rem)); }
+    }
+
+    @media (max-height: 720px) {
+      .quote { margin-bottom: 1.15rem; }
+      .social { margin-top: 1rem; }
+      main { padding-top: 4.6rem; }
+    }
+
+    @media (max-height: 570px) {
+      .quote { display: none; }
+      .bio p { margin-bottom: 0.24rem; }
+      .social { margin-top: 0.8rem; }
+      main { padding-top: 3.7rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .caret { animation: none !important; }
     }
   </style>
-  <script>
-    (function(){try{var s=localStorage.getItem('lang');var l=s||((navigator.language||'').toLowerCase().indexOf('zh')===0?'zh':'en');var d=document.documentElement;d.setAttribute('data-lang',l);d.lang=(l==='zh'?'zh-CN':'en');}catch(e){}})();
-  </script>
 </head>
 <body>
-  <div class="wrap">
+  <canvas id="pond" aria-hidden="true"></canvas>
+  <div class="pond-shade" aria-hidden="true"></div>
 
-    <nav class="top">
-      <span class="brand"><span data-l="en">Zhiang Qi</span><span data-l="zh">齐志昂</span></span>
-      <span class="links">
-        <a href="/blog/"><span data-l="en">Blog</span><span data-l="zh">博客</span></a>
-        <a href="https://github.com/qza36">GitHub</a>
-        <button class="langbtn" type="button" data-langtoggle aria-label="Switch language / 切换语言"><span data-l="en">中文</span><span data-l="zh">EN</span></button>
-      </span>
+  <div class="nav-wrap">
+    <nav class="nav" data-koi-avoid aria-label="primary">
+      <a href="/" aria-current="page">pond</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="/blog/">blog</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <button type="button" class="theme-btn" id="themeToggle" aria-label="switch to light theme" title="switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.7A8.7 8.7 0 0 1 9.3 3.8 7.3 7.3 0 1 0 20.2 14.7z"/></svg>
+      </button>
     </nav>
-
-    <header class="hero">
-      <img class="avatar" src="/img/avatar.jpg" alt="Zhiang Qi 齐志昂"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'ZQ'}))" />
-      <div>
-        <h1><span data-l="en">Zhiang Qi</span><span data-l="zh">齐志昂</span></h1>
-        <p class="role"><span data-l="en">Robotics · autonomous navigation &amp; LiDAR-inertial SLAM</span><span data-l="zh">机器人 · 自主导航与激光惯性 SLAM</span></p>
-        <p class="affil"><span data-l="en">B.Eng. Network Engineering · University of Science and Technology Liaoning</span><span data-l="zh">网络工程（本科）· 辽宁科技大学</span></p>
-        <div class="iconrow">
-          <a href="https://github.com/qza36">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-            qza36
-          </a>
-          <a href="mailto:qza36@outlook.com">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3h13A1.5 1.5 0 0 1 16 4.5v7A1.5 1.5 0 0 1 14.5 13h-13A1.5 1.5 0 0 1 0 11.5v-7A1.5 1.5 0 0 1 1.5 3Zm.2 1.2 6.3 4 6.3-4H1.7Zm12.6 1.1-6 3.8a.5.5 0 0 1-.6 0L1.2 5.3v6.2c0 .17.13.3.3.3h13a.3.3 0 0 0 .3-.3V5.3Z"/></svg>
-            qza36@outlook.com
-          </a>
-          <a href="/cv.pdf">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 0h5l3 3v11.5A1.5 1.5 0 0 1 10.5 16h-7A1.5 1.5 0 0 1 2 14.5v-13A1.5 1.5 0 0 1 3.5 0H4Zm5 1.5V4h2.5L9 1.5ZM5 7h6v1H5V7Zm0 3h6v1H5v-1Z"/></svg>
-            <span data-l="en">CV</span><span data-l="zh">简历</span>
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <section>
-        <h2 class="kicker"><span data-l="en">About</span><span data-l="zh">关于</span></h2>
-        <p class="lead">
-          <span data-l="en">I'm an undergraduate at the University of Science and Technology Liaoning, focused on autonomous navigation for mobile robots — LiDAR-inertial odometry, traversability mapping, and motion planning on unstructured terrain. I architected my RoboMaster team's full navigation-and-decision stack and deployed it in competition, and I've interned on quadruped and delivery-robot autonomy at Glodon and Heshi Robotics. I also contribute to open-source SLAM tooling such as KISS-ICP and FreeDOM.</span>
-          <span data-l="zh">辽宁科技大学网络工程本科在读，专注移动机器人的自主导航——激光惯性里程计、可通行性建图，以及非结构化地形下的运动规划。独立架构了战队完整的 RoboMaster 导航与决策系统并在赛场实战部署；曾在广联达·机器狗孵化部、上海合时科技从事四足与配送机器人自主导航实习；同时为 KISS-ICP、FreeDOM 等开源 SLAM 项目贡献代码。</span>
-        </p>
-      </section>
-
-      <section>
-        <h2 class="kicker"><span data-l="en">Research interests</span><span data-l="zh">研究方向</span></h2>
-        <div class="tags">
-          <span class="tag"><span data-l="en">LiDAR-inertial odometry / SLAM</span><span data-l="zh">激光惯性里程计 / SLAM</span></span>
-          <span class="tag"><span data-l="en">Traversability mapping</span><span data-l="zh">可通行性建图</span></span>
-          <span class="tag"><span data-l="en">Motion planning</span><span data-l="zh">运动规划</span></span>
-          <span class="tag"><span data-l="en">Autonomous exploration</span><span data-l="zh">自主探索</span></span>
-          <span class="tag"><span data-l="en">ROS 2 / embedded</span><span data-l="zh">ROS 2 / 嵌入式</span></span>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="kicker"><span data-l="en">Experience</span><span data-l="zh">实习经历</span></h2>
-        <div class="entry">
-          <div class="h">
-            <span><span data-l="en">Glodon · Robot-Dog Incubation — Algorithm Engineer Intern</span><span data-l="zh">广联达·机器狗孵化部 — 算法助理工程师</span></span>
-            <span class="when">2026 · <span data-l="en">Beijing</span><span data-l="zh">北京</span></span>
-          </div>
-          <p><span data-l="en">Quadruped motion planning on 2.5D unstructured terrain (TRG-Planner traversability-risk graph); indoor multi-floor stair detection &amp; segmentation (PCT-Planner) for cross-floor autonomy.</span><span data-l="zh">四足机器人 2.5D 非结构化地形运动规划（基于 TRG-Planner 遍历风险图）；室内多楼层楼梯检测与分割（PCT-Planner），支撑机器人自主跨楼层上下楼。</span></p>
-        </div>
-        <div class="entry">
-          <div class="h">
-            <span><span data-l="en">Heshi Robotics — Core Engineer · Outstanding Intern</span><span data-l="zh">上海合时科技 — 核心工程师·优秀实习生</span></span>
-            <span class="when">2025 · <span data-l="en">Shanghai</span><span data-l="zh">上海</span></span>
-          </div>
-          <p><span data-l="en">Led a campus delivery robot's full ROS 1 → ROS 2 migration; KISS-ICP + small_gicp localization and FAST-LIO2 large-scale mapping; led EGO-Planner full-3D planning for an earthquake search-and-rescue robot.</span><span data-l="zh">带队完成园区配送机器人 ROS 1 → ROS 2 全栈升级，KISS-ICP 配合 small_gicp 定位、FAST-LIO2 大范围室外建图；主导地震搜救机器人的 EGO-Planner 三维规划与实机落地。</span></p>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="kicker"><span data-l="en">Selected projects</span><span data-l="zh">项目</span></h2>
-
-        <article class="card">
-          <span class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="5"/></svg></span>
-          <div>
-            <h3>RoboMaster Autonomous Navigation &amp; Decision System <span class="meta">· C++ · ROS 2 · Nav2 · 2024–</span></h3>
-            <p><span data-l="en">A complete navigation + decision stack I built solo for RoboMaster, deployed in league and super-tournament matches. FAST-LIO2 + small_gicp localization at 20–30 Hz on low-power hardware; Patchwork++ ground segmentation feeding a 0.04 m spatio-temporal voxel costmap; Hybrid-A* global search with a 2000×56 MPPI local controller; behavior tree + FSM for autonomous strategy switching.</span><span data-l="zh">为 RoboMaster 系列赛独立开发的完整导航与决策系统，已在联盟赛、超级对抗赛实战部署。FAST-LIO2 配合 small_gicp 在低算力平台实现 20–30 Hz 定位；Patchwork++ 地面分割构建 0.04 m 时空体素成本地图；Hybrid-A* 全局搜索 + 2000×56 步 MPPI 局部控制；行为树与有限状态机实现多策略自主切换。</span></p>
-            <div class="clinks"><a href="https://github.com/qza36/COD_NAV">Code</a></div>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h4v-4M3 16h8v-4M3 12h12V8M3 8h16V4"/></svg></span>
-          <div>
-            <h3><span data-l="en">Indoor Multi-Floor Stair Detection &amp; Segmentation</span><span data-l="zh">室内多楼层点云楼梯检测与分割</span> <span class="meta">· C++ · ROS 2 · PCT-Planner · 2026</span></h3>
-            <p><span data-l="en">A stair-detection pipeline over indoor multi-floor point clouds: PCT-Planner traversability analysis extracts walkable structure; z-histogram peaks + RANSAC isolate per-floor ground; PCA and step-profile analysis separate stairs from ramps and segment flights/landings into structured turn types (straight / L / U).</span><span data-l="zh">面向室内多楼层全局点云的楼梯检测流程：以 PCT-Planner 可通行性分析抽取可通行结构；z 轴高度直方图峰值 + RANSAC 逐层提取主地面；再用 PCA 主方向与踏步分析区分楼梯/坡道，并把 flight/landing 分段为结构化转向类型（直行 / 左右转 / U 型）。</span></p>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-10 4 6 3-4 5 8z"/></svg></span>
-          <div>
-            <h3><span data-l="en">Earthquake Search-and-Rescue 3D Navigation</span><span data-l="zh">地震搜救机器人三维导航系统</span> <span class="meta">· C++ · ROS 2 · EGO-Planner · 2025</span></h3>
-            <p><span data-l="en">Full-3D navigation for a tracked robot in unstructured, collapsed terrain. EGO-Planner gradient-trajectory optimization with PCT-Planner replaces 2D grid navigation; a prior-free exploration mode uses FAST-LIO2 real-time mapping to auto-generate the next-best exploration goal. Deployed closed-loop on hardware.</span><span data-l="zh">面向地震坍塌等非结构化地形的履带机器人全三维导航系统。EGO-Planner 梯度轨迹优化配合 PCT-Planner 取代传统 2D 栅格导航；无先验地图自主探索模式借助 FAST-LIO2 实时建图自动生成下一最优探索目标，已在实机完成闭环部署。</span></p>
-          </div>
-        </article>
-      </section>
-
-      <section>
-        <h2 class="kicker"><span data-l="en">Open source</span><span data-l="zh">开源贡献</span></h2>
-        <div class="entry">
-          <div class="h">
-            <span>PRBonn/KISS-ICP <span class="meta" style="font-weight:400;color:var(--faint);font-size:13px"><span data-l="en">· 2100★ LiDAR odometry</span><span data-l="zh">· 2100★ LiDAR 里程计</span></span></span>
-            <span class="when">2025.09</span>
-          </div>
-          <p><span data-l="en">Added a /kiss/reset service that resets odometry pose, local map, and adaptive threshold in one call; merged after review by 3 maintainers.</span><span data-l="zh">新增 /kiss/reset 服务，一键重置里程计位姿、局部地图与自适应阈值；经 3 位维护者审核后合并。</span> <a href="https://github.com/PRBonn/kiss-icp/pull/479">PR #479</a></p>
-        </div>
-        <div class="entry">
-          <div class="h">
-            <span>LC-Robotics/FreeDOM <span class="meta" style="font-weight:400;color:var(--faint);font-size:13px"><span data-l="en">· RA-L 2025, dynamic-object removal</span><span data-l="zh">· RA-L 2025，动态物体去除</span></span></span>
-            <span class="when">2025.05</span>
-          </div>
-          <p><span data-l="en">Ported to Ubuntu 24.04 + ROS 2 Jazzy; part of 5 merged PRs across 14 repos including MIT-SPARK, hku-mars, and Livox-SDK.</span><span data-l="zh">移植至 Ubuntu 24.04 + ROS 2 Jazzy；累计在 14 个仓库提交 20 个 PR、合并 5 个，涉及 MIT-SPARK、hku-mars、Livox-SDK 等。</span> <a href="https://github.com/LC-Robotics/FreeDOM/pull/3">PR #3</a></p>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="kicker"><span data-l="en">Awards</span><span data-l="zh">竞赛荣誉</span></h2>
-        <ul class="awards">
-          <li><span class="date">2026</span><span><span data-l="en">RoboMaster University League, Liaoning Regional — 3rd place</span><span data-l="zh">RoboMaster 机甲大师高校联盟赛 · 辽宁站季军</span></span></li>
-          <li><span class="date">2025</span><span><span data-l="en">RoboMaster Super Tournament, Sentry Robot — 2nd prize</span><span data-l="zh">RoboMaster 机甲大师超级对抗赛 · 哨兵机器人二等奖</span></span></li>
-          <li><span class="date">2025</span><span><span data-l="en">RoboMaster University League, Northeast Regional — 2nd prize</span><span data-l="zh">RoboMaster 机甲大师高校联盟赛东北站 · 二等奖</span></span></li>
-          <li><span class="date">2025</span><span><span data-l="en">National Collegiate Game-AI Competition (Dots &amp; Boxes) — 1st prize</span><span data-l="zh">全国大学生博弈大赛·点格棋 · 一等奖</span></span></li>
-        </ul>
-      </section>
-    </main>
-
-    <footer>
-      <span>© <span id="yr"></span> <span data-l="en">Zhiang Qi · Built with Hexo · </span><span data-l="zh">齐志昂 · 由 Hexo 构建 · </span><a href="/blog/"><span data-l="en">Blog</span><span data-l="zh">博客</span></a></span>
-    </footer>
-
   </div>
+
+  <div class="stats" data-koi-avoid aria-hidden="true">
+    <span class="stat"><span class="num" id="fishCount">00</span><span class="label">koi</span></span>
+    <span class="stat"><span class="num" id="pelletCount">00</span><span class="label">bait</span></span>
+  </div>
+
+  <p class="feed-hint" id="feedHint" data-koi-avoid aria-hidden="true"><span class="hint-mark">+</span>click the pond to feed</p>
+
+  <main>
+    <div class="prose" data-koi-avoid>
+      <blockquote class="quote">
+        <span>in a maze of noise,</span>
+        <span>keep a quiet heading<span class="caret" aria-hidden="true"></span></span>
+      </blockquote>
+
+      <div class="identity">
+        <h1><span lang="zh-Hans">你好</span>, I'm Zhiang.</h1>
+
+        <div class="bio" id="bio">
+          <p>
+            Network Engineering undergrad @
+            <span class="cite" role="button" tabindex="0" aria-expanded="false" aria-describedby="cite-ustl">USTL<span class="cite-card" id="cite-ustl" role="tooltip">
+              <span class="card-head">
+                <span class="card-mark" aria-hidden="true">US</span>
+                <span class="card-co">USTL</span>
+                <span class="card-when">Liaoning</span>
+              </span>
+              <span class="card-body">
+                <span class="card-role">B.Eng. Network Engineering</span>
+                <span class="card-detail">University of Science and Technology Liaoning</span>
+              </span>
+              <span class="card-foot"><span>education</span><span>expected 2027</span></span>
+            </span></span>,
+            focused on autonomous navigation for mobile robots.
+          </p>
+
+          <p>
+            Before that:
+            <span class="cite" role="button" tabindex="0" aria-expanded="false" aria-describedby="cite-glodon">Glodon<span class="cite-card" id="cite-glodon" role="tooltip">
+              <span class="card-head">
+                <span class="card-mark" aria-hidden="true">GL</span>
+                <span class="card-co">Glodon</span>
+                <span class="card-when">Beijing</span>
+              </span>
+              <span class="card-body">
+                <span class="card-role">Algorithm Engineer Intern</span>
+                <span class="card-detail">Robot-Dog Incubation — quadruped motion planning</span>
+              </span>
+              <span class="card-foot"><span>internship</span><span>robotics</span></span>
+            </span></span>
+            (robot-dog intern),
+            <span class="cite" role="button" tabindex="0" aria-expanded="false" aria-describedby="cite-heshi">Heshi Robotics<span class="cite-card" id="cite-heshi" role="tooltip">
+              <span class="card-head">
+                <span class="card-mark" aria-hidden="true">HE</span>
+                <span class="card-co">Heshi Robotics</span>
+                <span class="card-when">Shanghai</span>
+              </span>
+              <span class="card-body">
+                <span class="card-role">Core Engineer · Outstanding Intern</span>
+                <span class="card-detail">ROS 1 → ROS 2 migration, localization, and deployment</span>
+              </span>
+              <span class="card-foot"><span>internship</span><span>robotics</span></span>
+            </span></span>
+            (outstanding intern), and
+            <span class="cite" role="button" tabindex="0" aria-expanded="false" aria-describedby="cite-robomaster">RoboMaster<span class="cite-card" id="cite-robomaster" role="tooltip">
+              <span class="card-head">
+                <span class="card-mark" aria-hidden="true">RM</span>
+                <span class="card-co">RoboMaster</span>
+                <span class="card-when">competition</span>
+              </span>
+              <span class="card-body">
+                <span class="card-role">Sentry stacks</span>
+                <span class="card-detail">3rd Liaoning league · 2nd sentry super tournament</span>
+              </span>
+              <span class="card-foot"><span>awards</span><span>team</span></span>
+            </span></span>
+            sentry stacks.
+          </p>
+
+          <p>
+            Currently building @
+            <span class="cite" role="button" tabindex="0" aria-expanded="false" aria-describedby="cite-cod">COD-RoboStudio<span class="cite-card" id="cite-cod" role="tooltip">
+              <span class="card-head">
+                <span class="card-mark" aria-hidden="true">CO</span>
+                <span class="card-co">COD-RoboStudio</span>
+                <span class="card-when">ongoing</span>
+              </span>
+              <span class="card-body">
+                <span class="card-role">Sentry navigation &amp; decision</span>
+                <span class="card-detail">COD_NAV · LiDAR-inertial SLAM, traversability, motion planning on ROS 2</span>
+              </span>
+              <span class="card-foot"><span>current</span><span>RoboMaster</span></span>
+            </span></span>
+            — LiDAR-inertial SLAM, traversability, and motion planning on ROS&nbsp;2.
+          </p>
+        </div>
+
+        <nav class="social" aria-label="links">
+          <a href="https://github.com/qza36" rel="noopener" target="_blank">github</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="/blog/">blog</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="/cv.pdf">cv</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="mailto:qza36@outlook.com">email</a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <p class="sr-only">An interactive koi pond. Click or tap open water to drop bait; the koi will swim over to eat. Hover or focus an underlined role to see more details.</p>
+
   <script>
-    (function(){
-      function apply(l){
-        var d=document.documentElement;
-        d.setAttribute('data-lang',l); d.lang=(l==='zh'?'zh-CN':'en');
-        try{localStorage.setItem('lang',l);}catch(e){}
-        document.title=(l==='zh')?'齐志昂 — 机器人 · 自主导航与 SLAM':'Zhiang Qi — Robotics · Autonomous Navigation & SLAM';
+(function () {
+  "use strict";
+
+  var TAU = Math.PI * 2;
+  var root = document.documentElement;
+  var themeColor = document.getElementById("themeColor");
+  var themeBtn = document.getElementById("themeToggle");
+  var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var finePointerMQ = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  /* ————————————————————————————————
+     small utilities
+  ———————————————————————————————— */
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function pick(arr) { return arr[(Math.random() * arr.length) | 0]; }
+
+  function angleDelta(a, b) {
+    var d = (a - b) % TAU;
+    if (d > Math.PI) d -= TAU;
+    if (d < -Math.PI) d += TAU;
+    return d;
+  }
+
+  function hash2(x, y, seed) {
+    var h = Math.imul(x | 0, 374761393) ^ Math.imul(y | 0, 668265263) ^ Math.imul(seed | 0, 1442695041);
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  }
+
+  function noise2(x, y, seed) {
+    var xi = Math.floor(x), yi = Math.floor(y);
+    var xf = x - xi, yf = y - yi;
+    var u = smooth(xf), v = smooth(yf);
+    var a = hash2(xi, yi, seed);
+    var b = hash2(xi + 1, yi, seed);
+    var c = hash2(xi, yi + 1, seed);
+    var d = hash2(xi + 1, yi + 1, seed);
+    return lerp(lerp(a, b, u), lerp(c, d, u), v);
+  }
+
+  function mulberry32(seed) {
+    var t = seed >>> 0;
+    return function () {
+      t += 0x6D2B79F5;
+      var r = t;
+      r = Math.imul(r ^ (r >>> 15), r | 1);
+      r ^= r + Math.imul(r ^ (r >>> 7), r | 61);
+      return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function storeGet(key) {
+    try { return window.localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function storeSet(key, value) {
+    try { window.localStorage.setItem(key, value); } catch (e) { /* private mode */ }
+  }
+
+  /* ————————————————————————————————
+     theme
+  ———————————————————————————————— */
+  var theme = storeGet("zions-theme") === "light" ? "light" : "dark";
+  root.setAttribute("data-theme", theme);
+
+  function updateThemeUI() {
+    var light = theme === "light";
+    themeBtn.setAttribute("aria-label", light ? "switch to dark theme" : "switch to light theme");
+    themeBtn.title = light ? "switch to dark theme" : "switch to light theme";
+    if (themeColor) themeColor.setAttribute("content", light ? "#f5f4f1" : "#1a1917");
+  }
+  updateThemeUI();
+
+  var pondApp = null;
+  themeBtn.addEventListener("click", function () {
+    theme = theme === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", theme);
+    storeSet("zions-theme", theme);
+    updateThemeUI();
+    if (pondApp) pondApp.setTheme(theme);
+  });
+
+  /* ————————————————————————————————
+     citation cards
+  ———————————————————————————————— */
+  var bioEl = document.getElementById("bio");
+  var cites = Array.prototype.slice.call(document.querySelectorAll(".cite"));
+  var openCite = null;
+  var closeTimer = 0;
+
+  function positionCard(cite) {
+    var card = cite.querySelector(".cite-card");
+    if (!card) return;
+    var r = cite.getBoundingClientRect();
+    var cw = card.offsetWidth || 320;
+    var ch = card.offsetHeight || 120;
+    var gutter = 14;
+    var x = r.left + r.width / 2 - cw / 2;
+    x = clamp(x, gutter, window.innerWidth - cw - gutter);
+    var y = r.top - ch - 11;
+    if (y < gutter) y = Math.min(window.innerHeight - ch - gutter, r.bottom + 11);
+    if (y < gutter) y = gutter;
+    var originX = clamp(r.left + r.width / 2 - x, 20, cw - 20);
+    card.style.left = Math.round(x) + "px";
+    card.style.top = Math.round(y) + "px";
+    card.style.transformOrigin = originX + "px 100%";
+  }
+
+  function openCard(cite) {
+    if (openCite === cite) {
+      positionCard(cite);
+      return;
+    }
+    if (openCite) closeCard(false);
+    openCite = cite;
+    cite.classList.add("is-open");
+    cite.setAttribute("aria-expanded", "true");
+    bioEl.classList.add("is-dimmed");
+    var p = cite.closest("p");
+    if (p) p.classList.add("is-hot");
+    positionCard(cite);
+    requestAnimationFrame(function () { if (openCite === cite) positionCard(cite); });
+  }
+
+  function closeCard(restoreFocus) {
+    window.clearTimeout(closeTimer);
+    if (!openCite) return;
+    var cite = openCite;
+    cite.classList.remove("is-open");
+    cite.setAttribute("aria-expanded", "false");
+    var p = cite.closest("p");
+    if (p) p.classList.remove("is-hot");
+    bioEl.classList.remove("is-dimmed");
+    openCite = null;
+    if (restoreFocus) cite.focus({ preventScroll: true });
+  }
+
+  function scheduleClose() {
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(function () { closeCard(false); }, 110);
+  }
+
+  cites.forEach(function (cite) {
+    var card = cite.querySelector(".cite-card");
+    cite.addEventListener("pointerenter", function () {
+      window.clearTimeout(closeTimer);
+      openCard(cite);
+    });
+    cite.addEventListener("pointerleave", function () {
+      if (openCite === cite) scheduleClose();
+    });
+    cite.addEventListener("focus", function () { openCard(cite); });
+    cite.addEventListener("blur", function () {
+      if (openCite === cite && !cite.matches(":hover")) scheduleClose();
+    });
+    cite.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.clearTimeout(closeTimer);
+      if (openCite === cite) positionCard(cite); else openCard(cite);
+    });
+    cite.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        if (openCite === cite) closeCard(false); else openCard(cite);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        closeCard(true);
       }
-      apply(document.documentElement.getAttribute('data-lang')||'en');
-      document.addEventListener('click',function(e){
-        var t=e.target.closest('[data-langtoggle]'); if(!t) return; e.preventDefault();
-        apply(document.documentElement.getAttribute('data-lang')==='zh'?'en':'zh');
+    });
+    if (card) {
+      card.addEventListener("pointerenter", function () { window.clearTimeout(closeTimer); });
+      card.addEventListener("pointerleave", function () { if (openCite === cite) scheduleClose(); });
+    }
+  });
+
+  document.addEventListener("pointerdown", function (e) {
+    if (openCite && !e.target.closest(".cite")) closeCard(false);
+  }, true);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && openCite) closeCard(true);
+  });
+
+  window.addEventListener("resize", function () {
+    if (openCite) { window.clearTimeout(closeTimer); closeCard(false); }
+  });
+
+  /* ————————————————————————————————
+     koi pond — character-cell renderer
+     Koi are articulated spines rasterized into a character grid: every
+     cell can carry a coloured tile plus an ASCII glyph. Wake energy is
+     diffused across the grid, ripples expand as rings of "/" and "\\",
+     and clicking drops a burst of pellets the koi rush to eat.
+  ———————————————————————————————— */
+
+  var POND_PALETTES = {
+    dark: {
+      bg: [26, 25, 23],
+      white: [240, 231, 217],
+      red: [232, 96, 56],
+      black: [58, 54, 48],
+      fin: [205, 196, 185],
+      eye: [18, 17, 15],
+      water: [255, 247, 240],
+      shadow: [0, 0, 0],
+      shadowAlpha: 0.55,
+      pellet: [236, 170, 92],
+      alpha: 0.8,
+      depthFloor: 0.4,
+      tile: [0.68, 0.98],
+      hi: [
+        [112, 22, 24], [168, 34, 28], [214, 58, 30],
+        [240, 96, 34], [250, 138, 52], [255, 178, 96]
+      ],
+      ink: 0.42
+    },
+    light: {
+      bg: [245, 244, 241],
+      white: [112, 108, 104],
+      red: [204, 62, 28],
+      black: [36, 33, 40],
+      fin: [138, 132, 126],
+      eye: [24, 22, 26],
+      water: [38, 37, 35],
+      shadow: [60, 58, 56],
+      shadowAlpha: 0.2,
+      pellet: [176, 108, 40],
+      alpha: 0.9,
+      depthFloor: 0.55,
+      tile: [0.78, 0.55],
+      hi: [
+        [138, 24, 22], [184, 38, 24], [222, 62, 28],
+        [238, 100, 38], [244, 140, 66], [248, 176, 116]
+      ],
+      ink: 0.45
+    }
+  };
+
+  var KOI_VARIETIES = [["kohaku", 3], ["sanke", 2], ["tancho", 1]];
+  var KOI_VARIETY_TOTAL = 6;
+  var BODY_GLYPHS = "t%SX8@#";
+  var CELL_SUBSAMPLES = [0.25, 0.25, 0.75, 0.25, 0.25, 0.75, 0.75, 0.75];
+
+  function smoothstep(a, b, x) { return smooth((x - a) / (b - a)); }
+
+  /* half-width of the body at normalized arc length s (0 head → .74 tail) */
+  function bodyWidth(s) {
+    if (s < 0.12) return 0.11 * Math.pow(Math.sin(s / 0.12 * Math.PI / 2), 0.55);
+    if (s < 0.3) return 0.11 + 0.025 * smoothstep(0.12, 0.3, s);
+    return 0.033 + 0.102 * (1 - smoothstep(0.3, 0.74, s));
+  }
+
+  function rippleLife(r) { return 2.2 + 1.6 * r.strength; }
+
+  function packRGB(c) {
+    return (((c[0] & 255) << 16) | ((c[1] & 255) << 8) | (c[2] & 255)) >>> 0;
+  }
+  function mixRGB(a, b, t) {
+    return [
+      (a[0] + (b[0] - a[0]) * t) | 0,
+      (a[1] + (b[1] - a[1]) * t) | 0,
+      (a[2] + (b[2] - a[2]) * t) | 0
+    ];
+  }
+  function scaleRGB(c, k) {
+    return [
+      Math.min(255, c[0] * k) | 0,
+      Math.min(255, c[1] * k) | 0,
+      Math.min(255, c[2] * k) | 0
+    ];
+  }
+  function gradientRGB(stops, t) {
+    var p = clamp(t, 0, 1) * (stops.length - 1);
+    var i = Math.min(stops.length - 2, Math.floor(p));
+    return mixRGB(stops[i], stops[i + 1], p - i);
+  }
+  function flowGlyph(dx, dy) {
+    var m = Math.hypot(dx, dy) || 1;
+    if (Math.abs(dy) < 0.38 * m) return "-";
+    if (Math.abs(dx) < 0.38 * m) return "|";
+    return dx * dy > 0 ? "\\" : "/";
+  }
+  function pickVariety() {
+    var roll = Math.random() * KOI_VARIETY_TOTAL;
+    for (var i = 0; i < KOI_VARIETIES.length; i++) {
+      roll -= KOI_VARIETIES[i][1];
+      if (roll <= 0) return KOI_VARIETIES[i][0];
+    }
+    return "kohaku";
+  }
+
+  /* ————————————————————————————————
+     world: motion, feeding, ripples, pellets
+  ———————————————————————————————— */
+  function PondWorld() {
+    this.width = 0;
+    this.height = 0;
+    this.time = 0;
+    this.koi = [];
+    this.pellets = [];
+    this.bites = [];
+    this.ripples = [];
+    this.lastFeed = -1e9;
+    this.pointer = { x: 0, y: 0, speed: 0, active: false };
+    this.avoid = [];
+    this._push = { x: 0, y: 0 };
+  }
+
+  PondWorld.prototype.resize = function (w, h) {
+    var first = this.width === 0;
+    var oldW = this.width, oldH = this.height;
+    this.width = w;
+    this.height = h;
+    if (first) {
+      this.seed();
+      return;
+    }
+    if (oldW > 0 && oldH > 0 && (oldW !== w || oldH !== h)) {
+      var sx = w / oldW, sy = h / oldH;
+      var sl = clamp(Math.sqrt(sx * sy), 0.55, 1.7);
+      for (var k = 0; k < this.koi.length; k++) {
+        var f = this.koi[k];
+        f.length = clamp(f.length * sl, 60, 460);
+        var step = f.length / 19;
+        var hx = clamp(f.nodes[0] * sx, 12, w - 12);
+        var hy = clamp(f.nodes[1] * sy, 12, h - 12);
+        for (var i = 0; i < 20; i++) {
+          f.nodes[2 * i] = hx - Math.cos(f.heading) * step * i;
+          f.nodes[2 * i + 1] = hy - Math.sin(f.heading) * step * i;
+        }
+      }
+    }
+  };
+
+  PondWorld.prototype.seed = function () {
+    var w = this.width, h = this.height;
+    var base = clamp(0.5 * Math.min(w, h), 170, 420);
+    var count = clamp(Math.round(w * h / 240000), 3, 6);
+    var extra = w >= 1024 ? 2 : 0;
+    this.koi = [];
+    this.pellets = [];
+    this.bites = [];
+    this.ripples = [];
+    this.time = 0;
+    for (var a = 0; a < count + extra; a++) {
+      var small = a >= count;
+      var len = base * (small ? rand(0.32, 0.45) : rand(0.6, 1));
+      var depthMax = small ? 0.72 : 1;
+      var heading = rand(0, TAU);
+      var pos = this.spawnPosition(len);
+      var nodes = new Float32Array(40);
+      var step = len / 19;
+      for (var i = 0; i < 20; i++) {
+        nodes[2 * i] = pos.x - Math.cos(heading) * step * i;
+        nodes[2 * i + 1] = pos.y - Math.sin(heading) * step * i;
+      }
+      var depth = rand(0.5, depthMax);
+      this.koi.push({
+        id: a + 1,
+        variety: pickVariety(),
+        length: len,
+        nodes: nodes,
+        heading: heading,
+        speed: 20,
+        phase: rand(0, TAU),
+        turn: 0,
+        wander: 0,
+        curiosity: rand(0.35, 1),
+        depth: depth,
+        depthTarget: rand(0.5, depthMax),
+        depthMax: depthMax,
+        nextDive: rand(6, 18),
+        nextSurface: rand(3, 14),
+        nextWake: rand(0, 2),
+        beat: 0,
+        rush: 0,
+        food: null,
+        burstUntil: 0,
+        nextBurst: rand(0, 3),
+        finPhase: rand(0, TAU),
+        startle: 0,
+        fleeX: 0,
+        fleeY: 0,
+        gulp: 0
       });
-      var y=document.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
-    })();
+    }
+  };
+
+  PondWorld.prototype.spawnPosition = function (len) {
+    var pad = 26 + len * 0.18;
+    var x = this.width * 0.5, y = this.height * 0.4;
+    for (var tries = 0; tries < 50; tries++) {
+      if (Math.random() < 0.45) {
+        x = rand(this.width * 0.46, this.width * 0.9);
+        y = rand(this.height * 0.08, this.height * 0.54);
+      } else {
+        x = rand(this.width * 0.1, this.width * 0.9);
+        y = rand(this.height * 0.1, this.height * 0.86);
+      }
+      if (!this.inAvoid(x, y, pad)) break;
+    }
+    return {
+      x: clamp(x, 14, this.width - 14),
+      y: clamp(y, 14, this.height - 14)
+    };
+  };
+
+  PondWorld.prototype.inAvoid = function (x, y, pad) {
+    pad = pad || 0;
+    for (var i = 0; i < this.avoid.length; i++) {
+      var r = this.avoid[i];
+      if (x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad) return true;
+    }
+    return false;
+  };
+
+  PondWorld.prototype.feed = function (x, y) {
+    this.lastFeed = this.time;
+    this.ripples.push({ x: x, y: y, born: this.time, strength: 0.35 });
+    var count = Math.min(5 + Math.floor(3 * Math.random()), 24 - this.pellets.length);
+    for (var i = 0; i < count; i++) {
+      var a = rand(0, TAU);
+      var r = 34 * Math.sqrt(Math.random());
+      var s = rand(2, 6);
+      this.pellets.push({
+        x: x + Math.cos(a) * r * 1.3,
+        y: y + Math.sin(a) * r,
+        born: this.time,
+        landAt: rand(0.15, 0.45),
+        landed: false,
+        vx: Math.cos(a) * s,
+        vy: Math.sin(a) * s
+      });
+    }
+  };
+
+  PondWorld.prototype.step = function (dt) {
+    this.time += dt;
+    this.pointer.speed *= Math.exp(-8 * dt);
+    for (var i = 0; i < this.koi.length; i++) this.stepKoi(this.koi[i], dt);
+
+    var t = this.time;
+    this.pellets = this.pellets.filter(function (p) { return t - p.born < 14; });
+    for (var j = 0; j < this.pellets.length; j++) {
+      var p = this.pellets[j];
+      if (!p.landed) {
+        if (t - p.born < p.landAt) continue;
+        p.landed = true;
+        this.ripples.push({ x: p.x, y: p.y, born: t, strength: 0.1 });
+        for (var k = 0; k < this.koi.length; k++) {
+          var f = this.koi[k];
+          if (Math.hypot(f.nodes[0] - p.x, f.nodes[1] - p.y) < 650) f.rush = 1;
+        }
+        continue;
+      }
+      var damp = Math.exp(-0.2 * dt);
+      p.vx *= damp;
+      p.vy *= damp;
+      p.x = clamp(p.x + p.vx * dt, 6, this.width - 6);
+      p.y = clamp(p.y + p.vy * dt, 6, this.height - 6);
+    }
+
+    this.ripples = this.ripples.filter(function (r) { return t - r.born < rippleLife(r); });
+    this.bites = this.bites.filter(function (b) { return t - b.born < 0.45; });
+  };
+
+  PondWorld.prototype.stepKoi = function (k, dt) {
+    var w = this.width, h = this.height, ptr = this.pointer, t = this.time;
+    var len = k.length, nodes = k.nodes;
+    var hx = nodes[0], hy = nodes[1];
+    var ax = Math.cos(k.heading), ay = Math.sin(k.heading);
+
+    /* ambient wander */
+    k.wander = clamp(k.wander + (Math.random() - 0.5) * dt * 2.4, -0.9, 0.9);
+    ax += 0.6 * Math.cos(k.heading + k.wander);
+    ay += 0.6 * Math.sin(k.heading + k.wander);
+
+    var food = this.pickFood(k, hx, hy, Math.max(1.6 * len + 220, k.rush > 0 ? 650 : 0));
+    var pdist = Math.hypot(ptr.x - hx, ptr.y - hy);
+    var recentlyFed = t - this.lastFeed < 2;
+
+    if (!food && !recentlyFed && ptr.active && ptr.speed > 1100 && pdist < 0.9 * len) {
+      k.startle = 1;
+      k.fleeX = ptr.x;
+      k.fleeY = ptr.y;
+    }
+    k.startle = Math.max(0, k.startle - 0.6 * dt);
+    var fleeing = k.startle > 0.3 && !food;
+    var feeding = false, curious = false, foodNear = 0;
+
+    if (fleeing) {
+      var fx = hx - k.fleeX, fy = hy - k.fleeY;
+      var fl = Math.hypot(fx, fy) || 1;
+      ax += fx / fl * 4 * k.startle;
+      ay += fy / fl * 4 * k.startle;
+    } else if (food) {
+      var fdx = food.x - hx, fdy = food.y - hy;
+      var fd = Math.hypot(fdx, fdy) || 1;
+      ax += fdx / fd * 3;
+      ay += fdy / fd * 3;
+      feeding = true;
+      foodNear = clamp(1 - fd / (1.2 * len), 0, 1);
+    } else if (ptr.active) {
+      var mdx = ptr.x - hx, mdy = ptr.y - hy;
+      var md = Math.hypot(mdx, mdy) || 1;
+      if (md < 300) {
+        var pull = k.curiosity * (1 - md / 300) * 2.2;
+        var radial = clamp(md / (0.6 * len), 0, 1);
+        ax += (mdx / md * radial - mdy / md * (1 - radial)) * pull;
+        ay += (mdy / md * radial + mdx / md * (1 - radial)) * pull;
+        curious = true;
+      }
+    }
+
+    /* personal space */
+    for (var o = 0; o < this.koi.length; o++) {
+      var other = this.koi[o];
+      if (other === k) continue;
+      var ox = other.nodes[0], oy = other.nodes[1];
+      if (Math.abs(ox - hx) > 2 * len || Math.abs(oy - hy) > 2 * len) continue;
+      for (var n = 0; n < 20; n += 3) {
+        var sx = hx - other.nodes[2 * n], sy = hy - other.nodes[2 * n + 1];
+        var sd = Math.hypot(sx, sy);
+        var range = (len + other.length) * (food ? 0.12 : 0.28);
+        if (sd < range && sd > 0.001) {
+          var sp = (1 - sd / range) * 2.4;
+          ax += sx / sd * sp;
+          ay += sy / sd * sp;
+        }
+      }
+      if (!feeding && Math.hypot(ox - hx, oy - hy) < 1.6 * len) {
+        ax += 0.18 * Math.cos(other.heading);
+        ay += 0.18 * Math.sin(other.heading);
+      }
+    }
+
+    /* keep clear of the reading area and the chrome */
+    this.avoidPush(hx, hy, 0.4 * len, this._push);
+    var av = feeding || curious ? 0.5 : 1.8;
+    ax += this._push.x * av;
+    ay += this._push.y * av;
+
+    /* soft walls */
+    var edge = Math.max(-hx, hx - w, -hy, hy - h);
+    if (edge > -0.25 * len) {
+      var wall = 3.5 * clamp((edge + 0.25 * len) / (0.5 * len), 0, 1);
+      var cx = w / 2 - hx, cy = h / 2 - hy;
+      var cd = Math.hypot(cx, cy) || 1;
+      ax += cx / cd * wall;
+      ay += cy / cd * wall;
+    }
+
+    var target = Math.atan2(ay, ax);
+    var maxTurn = (1 + 0.6 * k.rush) *
+      Math.min(fleeing ? 3 : feeding ? 1.9 + foodNear : curious ? 1.2 : 0.7, k.speed / len * 4) * dt;
+    var diff = clamp(angleDelta(target, k.heading), -maxTurn, maxTurn);
+    k.heading += diff;
+    k.turn += (diff / dt - k.turn) * Math.min(1, 3 * dt);
+
+    if (t > k.nextBurst && t > k.burstUntil) {
+      k.burstUntil = t + rand(0.7, 1.6);
+      k.nextBurst = k.burstUntil + rand(1.2, 4);
+    }
+    var excited = fleeing || feeding || t < k.burstUntil;
+    k.beat += ((excited ? 1 : 0) - k.beat) * Math.min(1, 3 * dt);
+
+    if (k.beat > 0.6 && k.depth > 0.65 && t > k.nextWake) {
+      this.ripples.push({ x: nodes[34], y: nodes[35], born: t, strength: 0.25 + 0.2 * k.depth });
+      k.nextWake = t + rand(0.8, 1.6) / k.beat;
+    }
+
+    k.rush = Math.max(0, k.rush - 0.7 * dt);
+    var cruise = 12 + 0.05 * len;
+    var targetSpeed = (1 + 0.8 * k.rush) * (
+      fleeing ? 3.2 * cruise :
+      feeding ? cruise * (1.9 + foodNear) :
+      excited ? cruise * (curious ? 1.6 : 1.35) :
+      0.45 * cruise
+    );
+    k.speed += (targetSpeed - k.speed) * Math.min(1, dt * (excited ? 1.6 + 3 * k.rush : 0.35));
+    k.phase += dt * (0.6 + k.beat * (2.2 + k.speed / 11));
+    k.finPhase += 2.4 * dt;
+    k.gulp += ((feeding && foodNear > 0.55 ? 1 : 0) - k.gulp) * Math.min(1, 6 * dt);
+
+    if (t > k.nextDive) {
+      k.depthTarget = rand(0.5, k.depthMax);
+      k.nextDive = t + rand(8, 20);
+    }
+    k.depth += ((feeding ? 1 : k.depthTarget) - k.depth) * Math.min(1, dt * (feeding ? 0.8 : 0.15));
+
+    nodes[0] += Math.cos(k.heading) * k.speed * dt;
+    nodes[1] += Math.sin(k.heading) * k.speed * dt;
+
+    /* articulated spine: each segment may bend only slightly from the last,
+       which gives koi their smooth, continuous C-curves. */
+    var step = len / 19;
+    var prevAngle = k.heading + Math.PI;
+    for (var s = 1; s < 20; s++) {
+      var px = nodes[2 * (s - 1)], py = nodes[2 * (s - 1) + 1];
+      var seg = Math.atan2(nodes[2 * s + 1] - py, nodes[2 * s] - px);
+      seg = prevAngle + clamp(angleDelta(seg, prevAngle), -0.16, 0.16);
+      nodes[2 * s] = px + Math.cos(seg) * step;
+      nodes[2 * s + 1] = py + Math.sin(seg) * step;
+      prevAngle = seg;
+    }
+
+    /* eat pellets that reach the mouth */
+    var mouth = 0.08 * len + 6;
+    var before = this.pellets.length;
+    this.pellets = this.pellets.filter(function (p) {
+      if (!p.landed) return true;
+      var dx = p.x - nodes[0], dy = p.y - nodes[1];
+      return dx * dx + dy * dy > mouth * mouth;
+    });
+    if (this.pellets.length < before) {
+      this.ripples.push({ x: nodes[0], y: nodes[1], born: t, strength: 0.6 });
+      this.bites.push({ x: nodes[0], y: nodes[1], born: t });
+      k.nextSurface = t + rand(6, 16);
+    } else if (t > k.nextSurface) {
+      this.ripples.push({ x: nodes[0], y: nodes[1], born: t, strength: 0.3 });
+      k.nextSurface = t + rand(8, 20);
+    }
+  };
+
+  PondWorld.prototype.avoidPush = function (x, y, radius, out) {
+    out.x = 0;
+    out.y = 0;
+    for (var i = 0; i < this.avoid.length; i++) {
+      var b = this.avoid[i];
+      var nx = x - clamp(x, b.left, b.right);
+      var ny = y - clamp(y, b.top, b.bottom);
+      var d = Math.hypot(nx, ny);
+      if (d > radius) continue;
+      if (d < 0.001) {
+        var dl = x - b.left, dr = b.right - x, dt = y - b.top, db = b.bottom - y;
+        var m = Math.max(dl, dr, dt, db);
+        if (m === dl) { nx = -1; ny = 0; }
+        else if (m === dr) { nx = 1; ny = 0; }
+        else if (m === dt) { nx = 0; ny = -1; }
+        else { nx = 0; ny = 1; }
+      }
+      var inv = Math.hypot(nx, ny) || 1;
+      var push = 1 - d / radius;
+      out.x += nx / inv * push;
+      out.y += ny / inv * push;
+    }
+    return out;
+  };
+
+  PondWorld.prototype.pickFood = function (k, x, y, radius) {
+    if (k.food && this.pellets.indexOf(k.food) < 0) k.food = null;
+    var nearest = this.nearestPellet(x, y, radius);
+    if (!k.food) {
+      k.food = nearest;
+      return k.food;
+    }
+    var d = Math.hypot(k.food.x - x, k.food.y - y);
+    if (d > 1.3 * radius) {
+      k.food = nearest;
+    } else if (nearest && Math.hypot(nearest.x - x, nearest.y - y) < 0.5 * d) {
+      k.food = nearest;
+    }
+    return k.food;
+  };
+
+  PondWorld.prototype.nearestPellet = function (x, y, radius) {
+    var best = null, bestD = radius * radius;
+    for (var i = 0; i < this.pellets.length; i++) {
+      var p = this.pellets[i];
+      if (!p.landed) continue;
+      var dx = p.x - x, dy = p.y - y;
+      var d = dx * dx + dy * dy;
+      if (d < bestD) { bestD = d; best = p; }
+    }
+    return best;
+  };
+
+  /* ————————————————————————————————
+     renderer: grid raster, tiles and glyphs
+  ———————————————————————————————— */
+  function PondRenderer(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.dpr = 1;
+    this.cw = 8;
+    this.ch = 10;
+    this.cols = 0;
+    this.rows = 0;
+    this.palette = POND_PALETTES.dark;
+    this.styles = new Map();
+    this.markingCache = new Map();
+    this.fontFamily = '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+
+    this.energy = new Float32Array(0);
+    this.energyTmp = new Float32Array(0);
+    this.cellGlyph = new Uint16Array(0);
+    this.cellColor = new Uint32Array(0);
+    this.cellAlpha = new Float32Array(0);
+    this.cellTile = new Uint32Array(0);
+    this.cellTileAlpha = new Float32Array(0);
+    this.cellDim = new Float32Array(0);
+    this.cellShadow = new Uint8Array(0);
+
+    this.spine = new Float32Array(40);
+    this.arc = new Float32Array(20);
+    this.arcTotal = 1;
+    this.flareLeft = 1;
+    this.flareRight = 1;
+    this.hit = { flag: 0, across: 1, du: 1, da: 0 };
+    this.hitS = 0;
+    this.hitV = 0;
+    this.hitDist = 0;
+    this.hitTx = 1;
+    this.hitTy = 0;
+    this.hitSeg = 0;
+  }
+
+  PondRenderer.prototype.setTheme = function (isLight) {
+    this.palette = isLight ? POND_PALETTES.light : POND_PALETTES.dark;
+    this.styles.clear();
+    this.markingCache.clear();
+  };
+
+  PondRenderer.prototype.resize = function (w, h, dpr) {
+    this.dpr = dpr;
+    this.cw = clamp(Math.round(w / 125), 8, 12);
+    this.ch = this.cw + 2;
+    this.cols = Math.ceil(w / this.cw);
+    this.rows = Math.ceil(h / this.ch);
+    this.canvas.width = Math.round(w * dpr);
+    this.canvas.height = Math.round(h * dpr);
+    this.canvas.style.width = w + "px";
+    this.canvas.style.height = h + "px";
+
+    var n = this.cols * this.rows;
+    this.energy = new Float32Array(n);
+    this.energyTmp = new Float32Array(n);
+    this.cellGlyph = new Uint16Array(n);
+    this.cellColor = new Uint32Array(n);
+    this.cellAlpha = new Float32Array(n);
+    this.cellTile = new Uint32Array(n);
+    this.cellTileAlpha = new Float32Array(n);
+    this.cellDim = new Float32Array(n).fill(1);
+    this.cellShadow = new Uint8Array(n);
+  };
+
+  PondRenderer.prototype.setDimBoxes = function (boxes) {
+    var cols = this.cols, rows = this.rows, cw = this.cw, ch = this.ch;
+    var dim = this.cellDim;
+    dim.fill(1);
+    var reach = 4 * cw;
+    for (var b = 0; b < boxes.length; b++) {
+      var box = boxes[b];
+      var c0 = Math.max(0, Math.floor((box.left - reach) / cw));
+      var c1 = Math.min(cols - 1, Math.floor((box.right + reach) / cw));
+      var r0 = Math.max(0, Math.floor((box.top - reach) / ch));
+      var r1 = Math.min(rows - 1, Math.floor((box.bottom + reach) / ch));
+      for (var row = r0; row <= r1; row++) {
+        var cy = row * ch + ch / 2;
+        for (var col = c0; col <= c1; col++) {
+          var cx = col * cw + cw / 2;
+          var dx = Math.max(box.left - cx, 0, cx - box.right);
+          var dy = Math.max(box.top - cy, 0, cy - box.bottom);
+          var d = Math.hypot(dx, dy);
+          var f = 0.15 + 0.85 * smoothstep(0, reach, d);
+          var idx = row * cols + col;
+          if (f < dim[idx]) dim[idx] = f;
+        }
+      }
+    }
+  };
+
+  PondRenderer.prototype.render = function (world, dt) {
+    var cols = this.cols;
+    if (!cols) return;
+    this.cellGlyph.fill(0);
+    this.cellTileAlpha.fill(0);
+    this.cellShadow.fill(0);
+
+    var sorted = world.koi.slice().sort(function (a, b) { return a.depth - b.depth; });
+    for (var i = 0; i < sorted.length; i++) this.rasterizeKoi(sorted[i], world.time);
+
+    this.depositWake(world);
+    this.diffuse(dt);
+
+    var ctx = this.ctx;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    ctx.font = "600 " + Math.round(0.72 * this.ch) + "px " + this.fontFamily;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    this.drawShadows();
+    this.drawWake();
+    this.drawRipples(world);
+    this.drawPellets(world);
+    this.drawCells();
+    this.drawBites(world);
+    ctx.globalAlpha = 1;
+  };
+
+  PondRenderer.prototype.style = function (color) {
+    color = color >>> 0;
+    var s = this.styles.get(color);
+    if (!s) {
+      s = "rgb(" + (color >>> 16) + "," + ((color >>> 8) & 255) + "," + (color & 255) + ")";
+      this.styles.set(color, s);
+    }
+    return s;
+  };
+
+  PondRenderer.prototype.glyphAt = function (index, glyph, color, alpha) {
+    var cols = this.cols, cw = this.cw, ch = this.ch;
+    this.ctx.globalAlpha = alpha;
+    this.ctx.fillStyle = this.style(color);
+    this.ctx.fillText(glyph, (index % cols) * cw + cw / 2, ((index / cols) | 0) * ch + ch / 2);
+  };
+
+  PondRenderer.prototype.cellIndex = function (x, y) {
+    var col = Math.floor(x / this.cw);
+    var row = Math.floor(y / this.ch);
+    if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) return -1;
+    return row * this.cols + col;
+  };
+
+  /* nearest point on the articulated spine; fills this.hit* and returns
+     whether the point falls inside the koi's body, fins or tail flare */
+  PondRenderer.prototype.sample = function (x, y, len, startSeg, endSeg) {
+    var s0 = startSeg || 0;
+    var s1 = endSeg === undefined ? 18 : endSeg;
+    var spine = this.spine, arc = this.arc;
+    var best = Infinity;
+    var arcPos = 0, side = 1, headDist = 0, endDist = 0, perp = 0;
+    var bestSeg = 0, tx = 1, ty = 0;
+
+    for (var i = s0; i <= s1; i++) {
+      var ax = spine[2 * i], ay = spine[2 * i + 1];
+      var ux = spine[2 * i + 2] - ax, uy = spine[2 * i + 3] - ay;
+      var seg2 = ux * ux + uy * uy || 1;
+      var proj = ((x - ax) * ux + (y - ay) * uy) / seg2;
+      var p = clamp(proj, 0, 1);
+      var qx = ax + ux * p, qy = ay + uy * p;
+      var dx = x - qx, dy = y - qy;
+      var d2 = dx * dx + dy * dy;
+      if (d2 < best) {
+        var segLen = Math.sqrt(seg2);
+        best = d2;
+        arcPos = (arc[i] + p * segLen) / this.arcTotal;
+        side = ux * (y - ay) - uy * (x - ax) >= 0 ? 1 : -1;
+        endDist = i === 18 ? Math.max(0, proj - 1) * segLen : 0;
+        headDist = i === 0 ? Math.max(0, -proj) * segLen : 0;
+        perp = Math.abs(ux * (y - ay) - uy * (x - ax)) / segLen;
+        bestSeg = i;
+        tx = ux / segLen;
+        ty = uy / segLen;
+      }
+    }
+
+    this.hitDist = Math.sqrt(best);
+    this.hitS = arcPos;
+    this.hitV = this.hitDist * side;
+    this.hitTx = tx;
+    this.hitTy = ty;
+    this.hitSeg = bestSeg;
+    return this.sampleBody(
+      arcPos,
+      this.hitDist / len,
+      endDist / len,
+      side > 0 ? this.flareLeft : this.flareRight,
+      headDist / len,
+      perp / len
+    );
+  };
+
+  PondRenderer.prototype.sampleBody = function (s, dist, endDist, flare, headDist, perp) {
+    var out = this.hit;
+    out.flag = 0;
+    out.across = 1;
+    out.du = 1;
+    out.da = 0;
+
+    /* head cap / barbel edge */
+    if (headDist > 0) {
+      if (headDist < 0.05 && Math.abs(perp - (0.045 + 0.7 * headDist)) < 0.016) {
+        out.flag = 5;
+        return true;
+      }
+      return false;
+    }
+
+    /* body */
+    var width = bodyWidth(s);
+    if (s <= 0.74 && dist <= width) {
+      var across = dist / width;
+      if (s > 0.055 && s < 0.1 && across > 0.5 && across < 0.85) out.flag = 3;
+      else if (s > 0.28 && s < 0.6 && across < 0.14) out.flag = 4;
+      else out.flag = 1;
+      out.across = across;
+      return true;
+    }
+
+    /* caudal flare */
+    if (s > 0.68 && endDist <= 0) {
+      var tailW = (0.03 + 0.15 * Math.pow(smoothstep(0.7, 1, s), 0.8)) * flare;
+      if (dist <= tailW && s <= 0.86 + dist / tailW * 0.14) {
+        out.flag = 2;
+        out.da = dist / tailW * 0.8;
+        return true;
+      }
+    }
+
+    /* pectoral / pelvic fins */
+    if (finEllipse(s, dist, 0.19, 0.85 + 0.5 * (flare - 1), 0.066 * flare, 0.04, out)) return true;
+    if (finEllipse(s, dist, 0.47, 0.75, 0.036, 0.018, out)) return true;
+    return false;
+  };
+
+  function finEllipse(s, dist, arcCenter, angle, halfArc, halfLat, out) {
+    var base = 0.85 * bodyWidth(arcCenter);
+    var cos = Math.cos(angle), sin = Math.sin(angle);
+    var dx = s - arcCenter, dy = dist - base;
+    var x = (dx * cos + dy * sin) / halfArc;
+    var y = (-dx * sin + dy * cos) / halfLat;
+    if (x * x + y * y > 1) return false;
+    out.flag = 2;
+    out.du = dx;
+    out.da = dy;
+    return true;
+  }
+
+  PondRenderer.prototype.rasterizeKoi = function (k, time) {
+    var len = k.length, nodes = k.nodes;
+    var cw = this.cw, ch = this.ch, cols = this.cols, rows = this.rows;
+    var spine = this.spine, arc = this.arc;
+
+    var amplitude = 0.2 + 1.1 * k.beat;
+    for (var i = 0; i < 20; i++) {
+      var r = i / 19;
+      var i0 = i > 0 ? i - 1 : i;
+      var i1 = i < 19 ? i + 1 : i;
+      var bx = nodes[2 * i0] - nodes[2 * i1];
+      var by = nodes[2 * i0 + 1] - nodes[2 * i1 + 1];
+      var bl = Math.hypot(bx, by) || 1;
+      bx /= bl;
+      by /= bl;
+      var wave = 0.04 * len * (0.05 + 0.95 * Math.pow(r, 2.2)) * amplitude * Math.sin(k.phase - 4.6 * r);
+      spine[2 * i] = nodes[2 * i] - by * wave;
+      spine[2 * i + 1] = nodes[2 * i + 1] + bx * wave;
+    }
+    arc[0] = 0;
+    for (var a = 1; a < 20; a++) {
+      arc[a] = arc[a - 1] + Math.hypot(spine[2 * a] - spine[2 * a - 2], spine[2 * a + 1] - spine[2 * a - 1]);
+    }
+    this.arcTotal = arc[19] || 1;
+
+    var flareBase = 1 - 0.25 * k.beat;
+    var finSwing = 0.18 * (1 - k.beat) * Math.sin(k.finPhase);
+    var turn = clamp(0.6 * k.turn, -0.35, 0.35);
+    this.flareLeft = flareBase + finSwing - turn;
+    this.flareRight = flareBase - finSwing + turn;
+
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (var b = 0; b < 20; b++) {
+      var nx = spine[2 * b], ny = spine[2 * b + 1];
+      if (nx < minX) minX = nx;
+      if (nx > maxX) maxX = nx;
+      if (ny < minY) minY = ny;
+      if (ny > maxY) maxY = ny;
+    }
+    var pad = 0.26 * len;
+    var c0 = Math.max(0, Math.floor((minX - pad) / cw));
+    var c1 = Math.min(cols - 1, Math.floor((maxX + pad) / cw));
+    var r0 = Math.max(0, Math.floor((minY - pad) / ch));
+    var r1 = Math.min(rows - 1, Math.floor((maxY + pad) / ch));
+    if (c0 > c1 || r0 > r1) return;
+
+    var pal = this.palette;
+    var diag = Math.hypot(cw, ch);
+    var shadowCol = Math.round(0.07 * len * k.depth / cw) + 1;
+    var shadowRow = Math.round(0.05 * len * k.depth / ch) + 1;
+    var baseAlpha = pal.alpha * (pal.depthFloor + (1 - pal.depthFloor) * k.depth);
+
+    for (var row = r0; row <= r1; row++) {
+      var cy = row * ch + ch / 2;
+      for (var col = c0; col <= c1; col++) {
+        var cx = col * cw + cw / 2;
+        var hit = this.sample(cx, cy, len);
+
+        if (!hit) {
+          var far = len * ((this.hitS > 0.4 && this.hitS < 0.62) ? 0.15 : 0.25) + diag;
+          if (this.hitDist > far) {
+            col += Math.max(0, Math.floor((this.hitDist - 0.25 * len - diag) / cw));
+            continue;
+          }
+        }
+
+        var seg0 = Math.max(0, this.hitSeg - 2);
+        var seg1 = Math.min(18, this.hitSeg + 2);
+        var flag = this.hit.flag;
+        var across = this.hit.across;
+        var hs = this.hitS;
+        var hv = this.hitV;
+        var tx = this.hitTx;
+        var ty = this.hitTy;
+        var cover = hit ? 1 : 0;
+
+        var interior = hit && flag !== 2 && flag !== 5 && hs > 0.04 && hs < 0.72 &&
+          bodyWidth(hs) * len - this.hitDist > 0.35 * diag;
+        if (interior) cover = 5;
+
+        var offX = 0, offY = 0;
+        if (!interior) {
+          for (var s = 0; s < 8; s += 2) {
+            var ox = CELL_SUBSAMPLES[s], oy = CELL_SUBSAMPLES[s + 1];
+            if (this.sample(cx + ox * cw, cy + oy * ch, len, seg0, seg1)) {
+              offX += (ox - 0.5) * cw;
+              offY += (oy - 0.5) * ch;
+              if (cover === 0) {
+                flag = this.hit.flag;
+                across = this.hit.across;
+                hs = this.hitS;
+                hv = this.hitV;
+                tx = this.hitTx;
+                ty = this.hitTy;
+              }
+              cover++;
+            }
+          }
+        }
+        if (!cover) continue;
+
+        var q = cover / 5;
+        var side = hv >= 0 ? 1 : -1;
+        var idx = row * cols + col;
+        var J = (Math.round(4294967295 * hash2(Math.round(90 * hs), Math.round(hv / (0.8 * cw)), k.id)) >>> 0);
+        var centered = hit && q >= 0.6;
+        var glyph = " ";
+        var ink = pal.fin;
+        var glyphAlpha = baseAlpha;
+        var tile = null;
+        var tileAlpha = 0;
+
+        if (flag === 5) {
+          glyph = flowGlyph(-tx - side * ty * 0.7, -ty + side * tx * 0.7);
+          ink = scaleRGB(mixRGB(pal.bg, pal.fin, 0.9), pal.ink + 0.3);
+        } else if (flag === 3 && centered) {
+          tile = mixRGB(pal.bg, pal.eye, 0.85);
+          tileAlpha = baseAlpha;
+          glyph = "o";
+          ink = mixRGB(pal.bg, pal.white, 0.9);
+        } else if (flag === 2) {
+          tile = mixRGB(pal.bg, pal.fin, 0.55);
+          tileAlpha = 0.45 * baseAlpha * q;
+          if (J % 2 === 0) {
+            glyph = ".";
+            glyphAlpha *= 0.6 * q;
+          }
+        } else {
+          var skin = this.skin(k, hs, hv, across);
+          var shadeNorm = side * (0.6 * ty - 0.8 * tx) * across;
+          var shade = clamp(0.22 + 0.5 * Math.sqrt(Math.max(0, 1 - across * across)) + 0.18 * shadeNorm, 0, 1);
+
+          if (skin === pal.red) {
+            var n1 = (hash2(k.id, 5, 17) - 0.5) * 0.3;
+            var n2 = (noise2(9 * hs + k.id, hv / len * 18, k.id + 21) - 0.5) * 0.25;
+            var stripe = Math.max(0, Math.sin(11 * hs - 1.8 * time + k.id) - 0.7) / 0.3;
+            tile = gradientRGB(pal.hi, clamp(0.15 + 0.8 * shade + n1 + n2 + 0.35 * stripe, 0, 1));
+          } else {
+            var tileMix = pal.tile[0] + (pal.tile[1] - pal.tile[0]) * shade;
+            tile = mixRGB(pal.bg, skin, tileMix);
+          }
+
+          if (cover === 5) {
+            var sc = col + shadowCol, sr = row + shadowRow;
+            if (sc >= 0 && sc < cols && sr >= 0 && sr < rows) this.cellShadow[sr * cols + sc] = 1;
+            tileAlpha = baseAlpha;
+            if (hs < 0.035 && across < 0.6 && k.gulp > 0.5) {
+              glyph = "o";
+              ink = pal.eye;
+            } else {
+              var gi = clamp(Math.round((1 - shade) * 4) + ((J >>> 4) % 3), 0, BODY_GLYPHS.length - 1);
+              glyph = BODY_GLYPHS.charAt(gi);
+              ink = scaleRGB(tile, pal.ink);
+              if (skin === pal.white) glyphAlpha *= 0.6;
+              var darkSeed = Math.floor(1.4 * time + (J % 997) / 97);
+              if (hash2(J, darkSeed, 7) < 0.03) tile = mixRGB(tile, pal.bg, 0.45);
+            }
+          } else {
+            tileAlpha = baseAlpha * q * 0.55;
+            if (Math.hypot(offX, offY) > 0.2 * cw && J % 3 === 0) {
+              glyph = ".";
+              ink = scaleRGB(tile, pal.ink);
+            }
+          }
+        }
+
+        this.cellTile[idx] = tile ? packRGB(tile) : 0;
+        this.cellTileAlpha[idx] = tileAlpha;
+        this.cellGlyph[idx] = glyph.charCodeAt(0);
+        this.cellColor[idx] = packRGB(ink);
+        this.cellAlpha[idx] = glyphAlpha;
+      }
+    }
+  };
+
+  PondRenderer.prototype.markingsFor = function (k) {
+    var cached = this.markingCache.get(k.id);
+    if (cached) return cached;
+    var red = [], black = [];
+    if (k.variety === "tancho") {
+      red.push({ s: 0.11, v: 0, rs: 0.05, rv: 0.055 });
+    } else {
+      if (hash2(k.id, 0, 41) < 0.75) {
+        red.push({
+          s: 0.1,
+          v: (hash2(k.id, 1, 41) - 0.5) * 0.03,
+          rs: 0.055 + 0.03 * hash2(k.id, 2, 41),
+          rv: 0.11
+        });
+      }
+      var bands = 2 + Math.floor(2 * hash2(k.id, 3, 41));
+      for (var i = 0; i < bands; i++) {
+        var size = 0.42 / bands;
+        red.push({
+          s: 0.25 + size * (i + 0.5) + (hash2(k.id, 10 + i, 41) - 0.5) * size * 0.3,
+          v: (hash2(k.id, 20 + i, 41) - 0.5) * 0.05,
+          rs: size * (0.32 + 0.12 * hash2(k.id, 30 + i, 41)),
+          rv: 0.09 + 0.05 * hash2(k.id, 40 + i, 41)
+        });
+      }
+    }
+    if (k.variety === "sanke") {
+      var spots = 4 + Math.floor(3 * hash2(k.id, 50, 41));
+      for (var j = 0; j < spots; j++) {
+        black.push({
+          s: 0.24 + 0.44 * hash2(k.id, 60 + j, 41),
+          v: (hash2(k.id, 70 + j, 41) - 0.5) * 0.16,
+          rs: 0.022,
+          rv: 0.026
+        });
+      }
+    }
+    var marks = { red: red, black: black };
+    this.markingCache.set(k.id, marks);
+    return marks;
+  };
+
+  PondRenderer.prototype.skin = function (k, s, v, across) {
+    var pal = this.palette;
+    var lateral = v / k.length;
+    if (across > 0.9 || s > 0.74) return pal.white;
+    var wobble = (noise2(14 * across + k.id, 30 * lateral, k.id + 3) - 0.5) * 0.6;
+    var marks = this.markingsFor(k);
+    var i;
+    for (i = 0; i < marks.black.length; i++) {
+      if (markHit(marks.black[i], s, lateral, wobble)) return pal.black;
+    }
+    for (i = 0; i < marks.red.length; i++) {
+      if (markHit(marks.red[i], s, lateral, wobble)) return pal.red;
+    }
+    return pal.white;
+  };
+
+  function markHit(mark, s, v, wobble) {
+    var ds = (s - mark.s) / mark.rs;
+    var dv = (v - mark.v) / mark.rv;
+    return ds * ds + dv * dv < 1 + wobble;
+  }
+
+  PondRenderer.prototype.depositWake = function (world) {
+    var cols = this.cols, rows = this.rows, cw = this.cw, ch = this.ch;
+    var energy = this.energy;
+    for (var k = 0; k < world.koi.length; k++) {
+      var nodes = world.koi[k].nodes;
+      var speed = world.koi[k].speed;
+      for (var i = 16; i < 20; i++) {
+        var col = Math.floor(nodes[2 * i] / cw);
+        var row = Math.floor(nodes[2 * i + 1] / ch);
+        if (col < 0 || row < 0 || col >= cols || row >= rows) continue;
+        var idx = row * cols + col;
+        energy[idx] = Math.min(1.5, energy[idx] + 0.035 + 0.0012 * speed);
+      }
+    }
+    if (world.pointer.active) {
+      var pc = Math.floor(world.pointer.x / cw);
+      var pr = Math.floor(world.pointer.y / ch);
+      if (pc >= 0 && pr >= 0 && pc < cols && pr < rows) {
+        var pi = pr * cols + pc;
+        energy[pi] = Math.min(1.5, energy[pi] + 0.12);
+      }
+    }
+  };
+
+  PondRenderer.prototype.diffuse = function (dt) {
+    var cols = this.cols, rows = this.rows;
+    var energy = this.energy, tmp = this.energyTmp;
+    var decay = Math.exp(-1.1 * dt);
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        var i = row * cols + col;
+        var l = col > 0 ? energy[i - 1] : energy[i];
+        var r = col < cols - 1 ? energy[i + 1] : energy[i];
+        var u = row > 0 ? energy[i - cols] : energy[i];
+        var d = row < rows - 1 ? energy[i + cols] : energy[i];
+        tmp[i] = (4 * energy[i] + l + r + u + d) * 0.125 * decay;
+      }
+    }
+    this.energy = tmp;
+    this.energyTmp = energy;
+  };
+
+  PondRenderer.prototype.drawShadows = function () {
+    var shadow = this.cellShadow, glyph = this.cellGlyph, dim = this.cellDim;
+    var pal = this.palette;
+    for (var i = 0; i < shadow.length; i++) {
+      if (shadow[i] && !glyph[i]) {
+        this.glyphAt(i, ":", packRGB(pal.shadow), pal.shadowAlpha * dim[i]);
+      }
+    }
+  };
+
+  PondRenderer.prototype.drawWake = function () {
+    var energy = this.energy, glyph = this.cellGlyph, shadow = this.cellShadow, dim = this.cellDim;
+    var pal = this.palette;
+    for (var i = 0; i < energy.length; i++) {
+      var e = energy[i];
+      if (e < 0.22 || glyph[i] || shadow[i]) continue;
+      this.glyphAt(i, e > 0.5 ? "-" : ".", packRGB(pal.water), 0.35 * Math.min(1, (e - 0.22) * 1.4) * dim[i]);
+    }
+  };
+
+  PondRenderer.prototype.drawRipples = function (world) {
+    var cols = this.cols, rows = this.rows, cw = this.cw, ch = this.ch;
+    var glyph = this.cellGlyph, dim = this.cellDim;
+    var pal = this.palette;
+    var time = world.time;
+    for (var r = 0; r < world.ripples.length; r++) {
+      var rip = world.ripples[r];
+      var age = time - rip.born;
+      var strength = Math.pow(Math.max(0, 1 - age / rippleLife(rip)), 1.5) * rip.strength;
+      for (var ring = 0; ring < 2; ring++) {
+        var radius = 52 * Math.max(0, age - 0.45 * ring) * (0.7 + 0.5 * rip.strength);
+        if (radius < 2) continue;
+        var band = 0.6 * cw;
+        var c0 = Math.max(0, Math.floor((rip.x - radius - cw) / cw));
+        var c1 = Math.min(cols - 1, Math.floor((rip.x + radius + cw) / cw));
+        var r0 = Math.max(0, Math.floor((rip.y - radius - ch) / ch));
+        var r1 = Math.min(rows - 1, Math.floor((rip.y + radius + ch) / ch));
+        var alpha = strength * (ring === 0 ? 0.55 : 0.3);
+        for (var row = r0; row <= r1; row++) {
+          var dy = row * ch + ch / 2 - rip.y;
+          for (var col = c0; col <= c1; col++) {
+            var idx = row * cols + col;
+            if (glyph[idx]) continue;
+            var dx = col * cw + cw / 2 - rip.x;
+            if (Math.abs(Math.hypot(dx, dy) - radius) > band) continue;
+            this.glyphAt(idx, ring === 1 ? "." : flowGlyph(-dy, dx), packRGB(pal.water), alpha * dim[idx]);
+          }
+        }
+      }
+    }
+  };
+
+  PondRenderer.prototype.drawCells = function () {
+    var ctx = this.ctx;
+    var cols = this.cols, cw = this.cw, ch = this.ch;
+    var glyph = this.cellGlyph, color = this.cellColor, alpha = this.cellAlpha;
+    var tile = this.cellTile, tileAlpha = this.cellTileAlpha, dim = this.cellDim;
+    for (var i = 0; i < glyph.length; i++) {
+      var g = glyph[i];
+      if (!g) continue;
+      var d = dim[i];
+      var col = i % cols;
+      var row = (i / cols) | 0;
+      if (tileAlpha[i] > 0) {
+        ctx.globalAlpha = tileAlpha[i] * d;
+        ctx.fillStyle = this.style(tile[i]);
+        ctx.fillRect(col * cw + 1, row * ch + 1, cw - 1, ch - 1);
+      }
+      if (g !== 32) {
+        ctx.globalAlpha = alpha[i] * d;
+        ctx.fillStyle = this.style(color[i]);
+        ctx.fillText(String.fromCharCode(g), col * cw + cw / 2, row * ch + ch / 2 + 1);
+      }
+    }
+  };
+
+  PondRenderer.prototype.drawPellets = function (world) {
+    var pal = this.palette;
+    var time = world.time;
+    for (var i = 0; i < world.pellets.length; i++) {
+      var p = world.pellets[i];
+      var age = time - p.born;
+      if (!p.landed) {
+        var fall = age / p.landAt;
+        var fi = this.cellIndex(p.x, p.y - (1 - fall) * this.ch * 1.5);
+        if (fi < 0 || this.cellGlyph[fi]) continue;
+        this.glyphAt(fi, fall < 0.5 ? "'" : ".", packRGB(pal.pellet), pal.alpha * (0.5 + 0.4 * fall));
+        continue;
+      }
+      var idx = this.cellIndex(p.x, p.y);
+      if (idx < 0 || this.cellGlyph[idx]) continue;
+      var fade = smoothstep(9, 14, age);
+      var wobble = 0.8 + 0.2 * Math.sin(3 * age + p.x);
+      this.glyphAt(idx, fade > 0.55 ? "." : "o", packRGB(pal.pellet), pal.alpha * wobble * (1 - 0.85 * fade));
+    }
+  };
+
+  PondRenderer.prototype.drawBites = function (world) {
+    var pal = this.palette;
+    var time = world.time;
+    for (var i = 0; i < world.bites.length; i++) {
+      var b = world.bites[i];
+      var idx = this.cellIndex(b.x, b.y);
+      if (idx < 0) continue;
+      var p = (time - b.born) / 0.45;
+      var char = p < 0.35 ? "*" : p < 0.7 ? "+" : ".";
+      this.glyphAt(idx, char, packRGB(pal.pellet),
+        Math.min(1, 1.6 * pal.alpha) * (1 - p * p) * this.cellDim[idx]);
+    }
+  };
+
+  /* ————————————————————————————————
+     app: canvas lifecycle, pointer, theme, stats
+  ———————————————————————————————— */
+  function PondApp(canvas) {
+    this.canvas = canvas;
+    this.renderer = new PondRenderer(canvas);
+    this.world = new PondWorld();
+    this.W = 0;
+    this.H = 0;
+    this.running = false;
+    this.reduced = reduceMQ.matches;
+    this.raf = 0;
+    this.last = 0;
+    this.acc = 0;
+    this.frames = 0;
+    this.lastPointerTime = 0;
+    this.counts = { koi: -1, bait: -1 };
+    this.boundTick = this.tick.bind(this);
+    this.onResize = this.resize.bind(this);
+    this.onPointerMove = this.handlePointerMove.bind(this);
+    this.onClick = this.handleClick.bind(this);
+    this.onPointerLeave = this.handlePointerLeave.bind(this);
+    this.onVisibility = this.handleVisibility.bind(this);
+    this.onMotionChange = this.handleMotionChange.bind(this);
+    this.bind();
+    this.resize();
+    this.renderer.setTheme(theme === "light");
+    this.syncStats(true);
+    this.hideHintLater();
+    if (this.reduced) this.drawStill();
+    else this.start();
+  }
+
+  PondApp.prototype.bind = function () {
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("orientationchange", this.onResize);
+    window.addEventListener("pointermove", this.onPointerMove, { passive: true });
+    window.addEventListener("click", this.onClick);
+    document.documentElement.addEventListener("pointerleave", this.onPointerLeave);
+    window.addEventListener("blur", this.onPointerLeave);
+    document.addEventListener("visibilitychange", this.onVisibility);
+    if (reduceMQ.addEventListener) reduceMQ.addEventListener("change", this.onMotionChange);
+    else if (reduceMQ.addListener) reduceMQ.addListener(this.onMotionChange);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        this.measureContent();
+        if (this.reduced) this.drawStill();
+      }.bind(this));
+    }
+    if (window.ResizeObserver) {
+      var self = this;
+      this.ro = new ResizeObserver(function () { self.measureContent(); });
+      var prose = document.querySelector(".prose");
+      if (prose) this.ro.observe(prose);
+    }
+  };
+
+  PondApp.prototype.resize = function () {
+    var w = Math.max(1, window.innerWidth);
+    var h = Math.max(1, window.innerHeight);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.W = w;
+    this.H = h;
+    this.renderer.resize(w, h, dpr);
+    this.measureContent();
+    var first = this.world.width === 0;
+    this.world.resize(w, h);
+    if (first) this.renderer.markingCache.clear();
+    this.syncStats(true);
+    if (this.reduced) this.drawStill();
+  };
+
+  PondApp.prototype.measureContent = function () {
+    var els = document.querySelectorAll("[data-koi-avoid]");
+    var boxes = [];
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) continue;
+      boxes.push({ left: r.left, top: r.top, right: r.right, bottom: r.bottom });
+    }
+    boxes.sort(function (a, b) { return a.top - b.top; });
+    var merged = [];
+    for (var b = 0; b < boxes.length; b++) {
+      var box = boxes[b], hit = null;
+      for (var m = 0; m < merged.length; m++) {
+        var cur = merged[m];
+        if (box.top - cur.bottom < 90 && box.left - cur.right < 90 && cur.left - box.right < 90) {
+          hit = cur;
+          break;
+        }
+      }
+      if (hit) {
+        hit.left = Math.min(hit.left, box.left);
+        hit.top = Math.min(hit.top, box.top);
+        hit.right = Math.max(hit.right, box.right);
+        hit.bottom = Math.max(hit.bottom, box.bottom);
+      } else {
+        merged.push({ left: box.left, top: box.top, right: box.right, bottom: box.bottom });
+      }
+    }
+    this.world.avoid = merged;
+    this.renderer.setDimBoxes(merged);
+  };
+
+  PondApp.prototype.inAvoid = function (x, y, pad) {
+    return this.world.inAvoid(x, y, pad);
+  };
+
+  PondApp.prototype.handlePointerMove = function (e) {
+    var p = this.world.pointer;
+    var now = e.timeStamp || performance.now();
+    var dt = Math.max(1, now - this.lastPointerTime) / 1000;
+    var dx = e.clientX - p.x;
+    var dy = e.clientY - p.y;
+    var inst = Math.min(Math.hypot(dx, dy) / dt, 5000);
+    p.speed += (inst - p.speed) * 0.5;
+    this.lastPointerTime = now;
+    p.x = e.clientX;
+    p.y = e.clientY;
+    p.active = e.pointerType !== "touch";
+  };
+
+  PondApp.prototype.handlePointerLeave = function () {
+    this.world.pointer.active = false;
+    this.world.pointer.speed = 0;
+  };
+
+  PondApp.prototype.handleClick = function (e) {
+    var target = e.target;
+    if (target && target.closest &&
+        target.closest("a, button, input, textarea, select, label, [role='button'], [data-koi-ignore]")) return;
+    if (window.getSelection && String(window.getSelection())) return;
+    if (this.inAvoid(e.clientX, e.clientY, 6)) return;
+    this.world.feed(e.clientX, e.clientY);
+    if (this.reduced) {
+      for (var i = 0; i < this.world.pellets.length; i++) {
+        this.world.pellets[i].landed = true;
+        this.world.pellets[i].vx = 0;
+        this.world.pellets[i].vy = 0;
+      }
+    }
+    this.hideHint();
+    this.syncStats();
+    if (this.reduced) this.drawStill();
+  };
+
+  PondApp.prototype.hideHint = function () {
+    var hint = document.getElementById("feedHint");
+    if (hint) hint.classList.add("is-gone");
+  };
+
+  PondApp.prototype.hideHintLater = function () {
+    window.setTimeout(function () {
+      var hint = document.getElementById("feedHint");
+      if (hint) hint.classList.add("is-gone");
+    }, 16000);
+    var hint = document.getElementById("feedHint");
+    if (!hint) return;
+    hint.innerHTML = finePointerMQ.matches
+      ? '<span class="hint-mark">+</span>click the pond to feed'
+      : '<span class="hint-mark">+</span>tap the pond to feed';
+  };
+
+  PondApp.prototype.setTheme = function (nextTheme) {
+    this.renderer.setTheme(nextTheme === "light");
+    if (this.reduced) this.drawStill();
+  };
+
+  PondApp.prototype.start = function () {
+    if (this.running || this.reduced) return;
+    this.running = true;
+    this.last = performance.now();
+    this.acc = 0;
+    this.raf = requestAnimationFrame(this.boundTick);
+  };
+
+  PondApp.prototype.stop = function () {
+    this.running = false;
+    cancelAnimationFrame(this.raf);
+    this.raf = 0;
+  };
+
+  PondApp.prototype.handleMotionChange = function () {
+    this.reduced = reduceMQ.matches;
+    if (this.reduced) {
+      this.stop();
+      this.drawStill();
+    } else {
+      this.start();
+    }
+  };
+
+  PondApp.prototype.handleVisibility = function () {
+    if (document.hidden) this.stop();
+    else if (!this.reduced) this.start();
+  };
+
+  PondApp.prototype.tick = function (now) {
+    if (!this.running) return;
+    var dt = Math.min(0.1, Math.max(0, (now - this.last) / 1000));
+    this.last = now;
+    this.acc += dt;
+    var step = 1 / 60;
+    var steps = 0;
+    while (this.acc >= step && steps < 4) {
+      this.world.step(step);
+      this.acc -= step;
+      steps++;
+    }
+    if (steps === 4) this.acc = 0;
+    if (++this.frames % 30 === 0) this.measureContent();
+    this.renderer.render(this.world, Math.max(dt, step * 0.25));
+    this.syncStats();
+    this.raf = requestAnimationFrame(this.boundTick);
+  };
+
+  PondApp.prototype.drawStill = function () {
+    if (!this.W) return;
+    if (this.world.time < 4) {
+      for (var i = 0; i < 240; i++) this.world.step(1 / 60);
+    }
+    this.measureContent();
+    this.renderer.render(this.world, 1 / 60);
+    this.syncStats(true);
+  };
+
+  PondApp.prototype.syncStats = function (force) {
+    var koi = this.world.koi.length;
+    var bait = this.world.pellets.length;
+    var fishEl = document.getElementById("fishCount");
+    var pelletEl = document.getElementById("pelletCount");
+    if (!fishEl || !pelletEl) return;
+    if (force || koi !== this.counts.koi) {
+      fishEl.textContent = String(koi).padStart(2, "0");
+      if (this.counts.koi >= 0) this.bumpStat(fishEl);
+      this.counts.koi = koi;
+    }
+    if (force || bait !== this.counts.bait) {
+      pelletEl.textContent = String(bait).padStart(2, "0");
+      if (this.counts.bait >= 0) this.bumpStat(pelletEl);
+      this.counts.bait = bait;
+    }
+  };
+
+  PondApp.prototype.bumpStat = function (el) {
+    el.classList.remove("is-bumped");
+    void el.offsetWidth;
+    el.classList.add("is-bumped");
+  };
+
+  /* ————————————————————————————————
+     boot
+  ———————————————————————————————— */
+  var canvas = document.getElementById("pond");
+  if (canvas && canvas.getContext) {
+    pondApp = new PondApp(canvas);
+    window.__pond = pondApp;
+  }
+
+
+  /* keep the citation cards correctly attached after late font/layout shifts */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      if (openCite) positionCard(openCite);
+    });
+  }
+})();
   </script>
 </body>
 </html>
